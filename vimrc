@@ -139,3 +139,12 @@ if  ! empty(glob('./.git'))
 else
   nmap <Leader>f :call fzf#run({'sink': 'tabedit'})<CR>
 endif
+
+" wrap word into symbols
+nmap <Leader>m` i`<Esc>ea`<Esc>
+nmap <Leader>m' i'<Esc>ea'<Esc>
+nmap <Leader>m" i"<Esc>ea"<Esc>
+nmap <Leader>m[ i[<Esc>ea]<Esc>
+nmap <Leader>m{ i{<Esc>ea}<Esc>
+nmap <Leader>m( i(<Esc>ea)<Esc>
+nmap <Leader>m< i<<Esc>ea><Esc>
