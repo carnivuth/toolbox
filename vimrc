@@ -66,9 +66,6 @@ set showmode
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" set shortcut for lazygit
-nnoremap <Leader>gg :!lazygit<CR>
-
 " set shortcut for cycling tabs
 
 " forward
@@ -120,6 +117,14 @@ nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 " fzf options
 let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
+" lazygit shortcut
+if  ! empty(glob('/usr/bin/lazygit'))
+  nmap <Leader>gg :!lazygit<CR>
+else
+  " if lazygit is absent, handy solution
+  nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
+endif
+  
 " set shortcut for fuzzyfinder
 if  ! empty(glob('./.git'))
  
