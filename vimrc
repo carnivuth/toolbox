@@ -117,17 +117,23 @@ nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 " fzf options
 let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
+" git shortcut
+ if  ! empty(glob('/usr/bin/git'))
+         noremap <Leader>G :! git<Space>
+ endif
+
 " lazygit shortcut
 if  ! empty(glob('/usr/bin/lazygit'))
   nmap <Leader>gg :!lazygit<CR>
 else
+    
   " if lazygit is absent, handy solution
   nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
 endif
   
 " set shortcut for fuzzyfinder
 if  ! empty(glob('./.git'))
- 
+
   " show only git managed files
   nmap <Leader>f :call fzf#run({'source': 'git ls-files', 'sink':'e'})<CR>
 else
