@@ -135,7 +135,7 @@ endif
 if  ! empty(glob('./.git'))
 
   " show only git managed files
-  nmap <Leader>f :call fzf#run({'source': 'git ls-files', 'sink':'e'})<CR>
+  nmap <Leader>f :call fzf#run({'source': 'git ls-files', 'sink':'tabedit'})<CR>
 else
   nmap <Leader>f :call fzf#run({'sink': 'tabedit'})<CR>
 endif
