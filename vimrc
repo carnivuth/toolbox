@@ -76,12 +76,14 @@ noremap <Leader>bb gT
 
 " close buffer
 nnoremap <Leader>c :bw<CR>
+nnoremap <Leader>C :bw!<CR>
 
 " save buffer
 nnoremap <Leader>w :w<CR>
 
 " quit vim
 nnoremap <Leader>q :qa<CR>
+nnoremap <Leader>Q :qa!<CR>
 
 " open vim configuration
 nnoremap <Leader>Vc :tabe $MYVIMRC<CR>
