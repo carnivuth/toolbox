@@ -15,11 +15,13 @@ for the base functionality, these programs are required
 - `lazygit` for advanced git interaction
 - `fzf` for quick file opening
 
-for lsp functionalities
+for lsp functionalities:
 
 - `vim-ale` for lsp features and code analisys
 - `vim-ansible` for playbooks and role linting
 - `pyright` for python stuff
+- `gopls` for go programs
+
 
 ## INSTALLATION
 
