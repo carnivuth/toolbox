@@ -142,6 +142,9 @@ else
   nmap <Leader>f :call fzf#run({'sink': 'tabedit'})<CR>
 endif
 
+" keep cursor on center when scrolling files
+nnoremap { {zz
+nnoremap } }zz
 " wrap word into symbols
 nmap <Leader>m` i`<Esc>ea`<Esc>
 nmap <Leader>m' i'<Esc>ea'<Esc>
