@@ -2,9 +2,11 @@ all: install
 
 BASEDIR=~
 
+current_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+alias := $(shell cat ~/.bashrc | grep vml)
+
 install:
-	rm -rf $(BASEDIR)/.vim
-	ln -sf . $(BASEDIR)/.vim
+		echo "alias vml='vim -u $(current_dir)/.vim/vimrc'">> ~/.bashrc
 
 clean:
-	rm $(BASEDIR)/.vim
+	sed '/vml=.*/d' ~/.bashrc
