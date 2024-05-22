@@ -35,6 +35,8 @@ git clone https://github.com/carnivuth/vim_cfg
 
 ```bash
 ln -s path/to/repo/ ~/.config/vim
+# or 
+vim -u path/to/repo/vimrc
 ```
 
 ### DEBIAN
