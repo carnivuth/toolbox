@@ -131,20 +131,18 @@ let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-dow
 if  ! empty(glob('/usr/bin/lazygit'))
   nmap <Leader>gg :!lazygit<CR>
 else
-
-    
   " if lazygit is absent, handy solution
   nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
 endif
   
 " set shortcut for fuzzyfinder
-if  ! empty(glob('./.git'))
+nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
 
+if  ! empty(glob('./.git'))
   " show only git managed files
-  nmap <Leader>f :call fzf#run({'source': 'git ls-files', 'sink':'tabedit'})<CR>
-  nmap <Leader>F :call fzf#run({'sink':'tabedit'})<CR>
+  nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'tabedit'})<CR>
 else
-  nmap <Leader>f :call fzf#run({'sink': 'tabedit'})<CR>
+  nmap <Leader>fg :call fzf#run({'sink': 'tabedit'})<CR>
 endif
 
 " keep cursor on center when scrolling files
