@@ -1,5 +1,5 @@
 " USEFULL DOC FOR SCRIPTING
-" useful link for vimscripting https://devhints.io/vimscript
+" useful lkn for vimscripting https://devhints.io/vimscript
 " fzf vim function docs https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
 " import tabline configuration
@@ -90,6 +90,7 @@ nnoremap <Leader>Vc :tabe $MYVIMRC<CR>
 
 " reload vim configuration
 nnoremap <Leader>Vr :source $MYVIMRC<CR>
+noremap <Leader>e :tabedit .<CR>
 
 " ALE options
 
@@ -106,6 +107,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " enable ALE lint only on filesave
 let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 
@@ -114,6 +116,7 @@ nnoremap <Leader>l :ALE
 nnoremap <Leader>ld :ALEGoToDefinition<CR>
 nnoremap <Leader>li :ALEGoToImplementation<CR>
 nnoremap <Leader>ln :ALENext<CR>
+nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 
 " fzf options
@@ -128,6 +131,7 @@ let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-dow
 if  ! empty(glob('/usr/bin/lazygit'))
   nmap <Leader>gg :!lazygit<CR>
 else
+
     
   " if lazygit is absent, handy solution
   nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
@@ -138,13 +142,21 @@ if  ! empty(glob('./.git'))
 
   " show only git managed files
   nmap <Leader>f :call fzf#run({'source': 'git ls-files', 'sink':'tabedit'})<CR>
+  nmap <Leader>F :call fzf#run({'sink':'tabedit'})<CR>
 else
   nmap <Leader>f :call fzf#run({'sink': 'tabedit'})<CR>
 endif
 
 " keep cursor on center when scrolling files
+nnoremap n nzz
+nnoremap N Nzz
+
 nnoremap { {zz
 nnoremap } }zz
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+" wrap word into symbols
 " wrap word into symbols
 nmap <Leader>m` i`<Esc>ea`<Esc>
 nmap <Leader>m' i'<Esc>ea'<Esc>
