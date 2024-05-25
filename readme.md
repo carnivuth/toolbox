@@ -4,8 +4,8 @@ These are my personal vim configurations, aimed at python and ansible programmin
 
 ## GOALS
 
-- portability: these configurations are meant to be used in any possible environment, primarly arch, ubuntu and debian at the leatest versions
-- plugin-less: avoid to depend on external plugins 
+- **portability**: these configurations are meant to be used in any possible environment, primarly arch, ubuntu and debian at the leatest versions
+- **plugin-less**: avoid to depend on external plugins 
 
 ## DEPENDENCIES
 
@@ -14,6 +14,10 @@ for the base functionality, these programs are required
 - `vim` main program
 - `lazygit` for advanced git interaction
 - `fzf` for quick file opening
+
+wayland specific:
+
+- `wl-clipboard` for clipboard copypaste shortcuts
 
 for lsp functionalities:
 

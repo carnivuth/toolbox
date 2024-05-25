@@ -124,7 +124,7 @@ let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-dow
 
 " git shortcut
  if  ! empty(glob('/usr/bin/git'))
-         noremap <Leader>G :! git<Space>
+  noremap <Leader>G :! git<Space>
  endif
 
 " lazygit shortcut
@@ -141,8 +141,6 @@ nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
 if  ! empty(glob('./.git'))
   " show only git managed files
   nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'tabedit'})<CR>
-else
-  nmap <Leader>fg :call fzf#run({'sink': 'tabedit'})<CR>
 endif
 
 " keep cursor on center when scrolling files
@@ -154,7 +152,7 @@ nnoremap } }zz
 
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-" wrap word into symbols
+
 " wrap word into symbols
 nmap <Leader>m` i`<Esc>ea`<Esc>
 nmap <Leader>m' i'<Esc>ea'<Esc>
@@ -163,3 +161,9 @@ nmap <Leader>m[ i[<Esc>ea]<Esc>
 nmap <Leader>m{ i{<Esc>ea}<Esc>
 nmap <Leader>m( i(<Esc>ea)<Esc>
 nmap <Leader>m< i<<Esc>ea><Esc>
+
+" copy to clipboard (wayland only)
+if ! empty(glob('/usr/bin/wl-copy'))
+  vnoremap <silent>Y :w !wl-copy<CR><CR>
+  nnoremap <silent>Y :call system("wl-copy", @")<CR>
+endif
