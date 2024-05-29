@@ -167,3 +167,7 @@ if ! empty(glob('/usr/bin/wl-copy'))
   vnoremap <silent>Y :w !wl-copy<CR><CR>
   nnoremap <silent>Y :call system("wl-copy", @")<CR>
 endif
+
+
+" tab command shortcut
+nnoremap <Leader>te :tabedit<Space>
