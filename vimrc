@@ -66,14 +66,6 @@ set showmode
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" set shortcut for cycling tabs
-
-" forward
-noremap <Leader>bn gt
-
-" backward
-noremap <Leader>bb gT
-
 " close buffer
 nnoremap <Leader>c :bw<CR>
 nnoremap <Leader>C :bw!<CR>
@@ -116,11 +108,9 @@ nnoremap <Leader>l :ALE
 nnoremap <Leader>ld :ALEGoToDefinition<CR>
 nnoremap <Leader>li :ALEGoToImplementation<CR>
 nnoremap <Leader>ln :ALENext<CR>
+nnoremap <Leader>lp :ALEPrevious<CR>
 nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
-
-" fzf options
-let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
 " git shortcut
  if  ! empty(glob('/usr/bin/git'))
@@ -134,9 +124,14 @@ else
   " if lazygit is absent, handy solution
   nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
 endif
-  
+
+" fzf options
+let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
+
+ 
 " set shortcut for fuzzyfinder
 nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
+  nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>
 
 if  ! empty(glob('./.git'))
   " show only git managed files
@@ -146,9 +141,12 @@ endif
 " keep cursor on center when scrolling files
 nnoremap n nzz
 nnoremap N Nzz
-
 nnoremap { {zz
 nnoremap } }zz
+nnoremap ( (zz
+nnoremap ) )zz
+nnoremap [ [zz
+nnoremap ] ]zz
 
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
@@ -171,3 +169,10 @@ endif
 
 " tab command shortcut
 nnoremap <Leader>te :tabedit<Space>
+nnoremap <Leader>to :tabonly<CR>
+nnoremap <Leader>tc :tabclose<CR>
+nnoremap <Leader>tn gt
+nnoremap <Leader>tp gT
+nnoremap <Leader>tj :tabmove +1<CR>
+nnoremap <Leader>tj :tabmove +1<CR>
+nnoremap <Leader>tp :tabprevious<CR>
