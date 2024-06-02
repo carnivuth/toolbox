@@ -35,11 +35,22 @@ for lsp functionalities:
 git clone https://github.com/carnivuth/vim_cfg
 ```
 
-- install configuration in the user directory or run vim with vimrc as configuration file
+- run make
+
+```
+cd vim_cfg
+make 
+```
+
+the makefile creates a link in `$HOME/.vim` to this directory, the installation can also be performed by creating manually the link:  
 
 ```bash
 ln -s path/to/repo/ ~/.config/vim
-# or 
+```
+
+or you can also don't install the configuration in the vim default folder and run vim by setting the configuration file
+
+```bash
 vim -u path/to/repo/vimrc
 ```
 
