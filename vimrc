@@ -177,3 +177,6 @@ nnoremap <Leader>tp gT
 nnoremap <Leader>tj :tabmove +1<CR>
 nnoremap <Leader>tj :tabmove +1<CR>
 nnoremap <Leader>tp :tabprevious<CR>
+
+nnoremap <Leader>s :s/
+nnoremap <Leader>S :%s/
