@@ -4,7 +4,7 @@ name = .vim
 all: install
 
 install: 
-	ln -s $(shell pwd) $(prefix)/$(name)
+	ln -fs $(shell pwd) $(prefix)/$(name)
 
 
 uninstall:
