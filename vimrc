@@ -123,7 +123,7 @@ if  ! empty(glob('/usr/bin/lazygit'))
   nmap <Leader>gg :!lazygit<CR>
 else
   " if lazygit is absent, handy solution
-  nmap <Leader>gg :!git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add<CR>
+  nmap <Leader>gg :!~/.vim/bin/lz_git.sh<CR>
 endif
 
 " fzf options
