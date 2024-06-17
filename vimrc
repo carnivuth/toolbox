@@ -113,6 +113,10 @@ nnoremap <Leader>lp :ALEPrevious<CR>
 nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 
+let g:ale_fixers = {
+ \   '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
+
 " git shortcut
  if  ! empty(glob('/usr/bin/git'))
   noremap <Leader>G :! git<Space>
@@ -129,7 +133,7 @@ endif
 " fzf options
 let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
- 
+
 " set shortcut for fuzzyfinder
 nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
   nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>
