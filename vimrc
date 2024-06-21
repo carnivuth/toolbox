@@ -72,6 +72,7 @@ nnoremap <Leader>C :bw!<CR>
 
 " save buffer
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>W :wa<CR>
 
 " quit vim
 nnoremap <Leader>q :qa<CR>
@@ -176,6 +177,7 @@ endif
 nnoremap <Leader>te :tabedit<Space>
 nnoremap <Leader>to :tabonly<CR>
 nnoremap <Leader>tc :tabclose<CR>
+nnoremap <TAB> gt
 nnoremap <Leader>tn gt
 nnoremap <Leader>tp gT
 nnoremap <Leader>tj :tabmove +1<CR>
