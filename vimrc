@@ -186,3 +186,11 @@ nnoremap <Leader>tp :tabprevious<CR>
 
 nnoremap <Leader>s :s/
 nnoremap <Leader>S :%s/
+
+" add elements to begining and endig of a visual highlighted block
+vnoremap ` <ESC>`>a`<ESC>`<i`<ESC>
+vnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
+vnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
+vnoremap { <ESC>`>a}<ESC>`<i}<ESC>
+vnoremap <C-i> <ESC>`>a*<ESC>`<i*<ESC>
+vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>

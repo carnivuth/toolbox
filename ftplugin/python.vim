@@ -2,11 +2,5 @@
 vnoremap <Leader>c I#<ESC>
 nnoremap <Leader>r :! python %<ESC>
 
+" FIXERS
 let b:ale_fixers = ['prettier']
-
-inoremap ' ''<C-c>i
-inoremap [ []<C-c>i
-inoremap { {}<C-c>i
-inoremap ( ()<C-c>i
-inoremap " ""<C-c>i
-inoremap ` ``<C-c>i
