@@ -189,8 +189,13 @@ nnoremap <Leader>S :%s/
 
 " add elements to begining and endig of a visual highlighted block
 vnoremap ` <ESC>`>a`<ESC>`<i`<ESC>
+vnoremap ' <ESC>`>a'<ESC>`<i'<ESC>
+vnoremap " <ESC>`>a"<ESC>`<i"<ESC>
 vnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
 vnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
-vnoremap { <ESC>`>a}<ESC>`<i}<ESC>
+vnoremap { <ESC>`>a}<ESC>`<i{<ESC>
+vnoremap {{ <ESC>`>a}}<ESC>`<i{{<ESC>
+vnoremap m <ESC>`>a$<ESC>`<i$<ESC>
+vnoremap mm <ESC>`>a$$<ESC>`<i$$<ESC>
 vnoremap <C-i> <ESC>`>a*<ESC>`<i*<ESC>
 vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>
