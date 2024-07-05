@@ -1,6 +1,7 @@
 prefix = ~
 name = .vim
 
+SHELL= /bin/bash
 all: install
 
 # check if conf is already installed and remove old link
