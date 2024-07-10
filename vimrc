@@ -178,6 +178,7 @@ nnoremap <Leader>te :tabedit<Space>
 nnoremap <Leader>to :tabonly<CR>
 nnoremap <Leader>tc :tabclose<CR>
 nnoremap <TAB> gt
+nnoremap <S-TAB> gT
 nnoremap <Leader>tn gt
 nnoremap <Leader>tp gT
 nnoremap <Leader>tj :tabmove +1<CR>
