@@ -55,7 +55,7 @@ function! TabLine()
     " switch to no underlining and add final space
     let s .= ' '
   endfor
-  let s .= '%#TabLineFill#%T'
+  "let s .= '%#TabLineFill#%T'
   " right-aligned close button
   " if tabpagenr('$') > 1
   "   let s .= '%=%#TabLineFill#%999Xclose'
