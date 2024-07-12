@@ -1,7 +1,6 @@
 prefix = ~
 name = .vim
 deps="vim git tmux fzf"
-distro=$(shell grep 'ID=' /etc/os-release| awk -F '=' '{print $2}')
 
 SHELL= /bin/bash
 all: install
@@ -32,8 +31,9 @@ install: clean
 	
 	# install vim configs
 	ln -fs $(shell pwd) $(prefix)/$(name)
-	@echo "install $(deps)"
+	@echo "remember to install $(deps)"
 
+update: uninstall install
 uninstall: clean
 	# restore old vim configs if present
 	@if [[ -e $(prefix)/.vimrc.old ]]; then\
@@ -49,4 +49,4 @@ uninstall: clean
 	sed -i 's/.*vim_cfg.*//g' ~/.bashrc
 
 
-.PHONY: all install uninstall clean
+.PHONY: all install uninstall clean update

@@ -1,11 +1,12 @@
-# PERSONAL VIM CONFIGURATIONS 
+# TOOLBOX
 
-These are my personal vim configurations, aimed at python and ansible programming.
+personal toolbox aimed at python,bash and ansible programming.
 
 ## GOALS
 
-- **portability**: these configurations are meant to be used in any possible environment, primarly arch, ubuntu and debian at the leatest versions
+- **portability**: these configurations are meant to be used in any possible environment (*from personal desktops to remote, terminal only machines*)  and any possible os (*primarly arch, ubuntu and debian at the leatest versions*)
 - **plugin-less**: avoid to depend on external plugins 
+- **simplicity**: quick, easy installation and update procedures
 
 ## DEPENDENCIES
 
@@ -14,10 +15,11 @@ for the base functionality, these programs are required
 - `vim` main program
 - `lazygit` for advanced git interaction
 - `fzf` for quick file opening
+- `tmux` for multiple session and project management
 
 wayland specific:
 
-- `wl-clipboard` for clipboard copypaste shortcuts
+- `wl-clipboard` for clipboard copypaste shortcuts (*remote servers not supported*)
 
 for lsp functionalities:
 
@@ -48,7 +50,7 @@ the makefile creates a link in `$HOME/.vim` to this directory, the installation 
 ln -s path/to/repo/ ~/.config/vim
 ```
 
-or you can also don't install the configuration in the vim default folder and run vim by setting the configuration file
+or you can also run vim by setting the configuration file
 
 ```bash
 vim -u path/to/repo/vimrc
@@ -61,4 +63,22 @@ for debian distros fzf main vim function need to be linked manually
 ```bash
 mkdir -p /usr/share/vim/vimfiles/plugin/
 ln -s /usr/share/doc/fzf/examples/plugin/fzf.vim /usr/share/vim/vimfiles/plugin/
+```
+
+## UNINSTALL 
+
+- run make
+
+```bash
+cd vim_cfg
+make uninstall
+```
+
+## UPDATE
+
+- run make
+
+```bash
+cd vim_cfg
+make update
 ```
