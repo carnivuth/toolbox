@@ -40,7 +40,7 @@ open_project(){
   else
     # start a new session with the standard setup
     tmux new  -s "$PROJECT_NAME" vim \; \
-    split-window  -h -l 60 \; \
+    split-window  -v -l 6 \; \
     selectp -t 0
   fi
 }
