@@ -34,13 +34,13 @@ for lsp functionalities:
 - clone repository
 
 ```bash
-git clone https://github.com/carnivuth/vim_cfg
+git clone https://github.com/carnivuth/toolbox
 ```
 
 - run make
 
 ```
-cd vim_cfg
+cd toolbox
 make 
 ```
 
@@ -70,7 +70,7 @@ ln -s /usr/share/doc/fzf/examples/plugin/fzf.vim /usr/share/vim/vimfiles/plugin/
 - run make
 
 ```bash
-cd vim_cfg
+cd toolbox
 make uninstall
 ```
 
@@ -79,6 +79,6 @@ make uninstall
 - run make
 
 ```bash
-cd vim_cfg
+cd toolbox
 make update
 ```
