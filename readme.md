@@ -1,6 +1,8 @@
 # TOOLBOX
 
-<img src="https://cdn.dribbble.com/users/795597/screenshots/3623896/media/a4211dcb3612530d8d91db5aede9520e.gif" width="300" />
+<p align="center">
+    <img src="https://cdn.dribbble.com/users/795597/screenshots/3623896/media/a4211dcb3612530d8d91db5aede9520e.gif" width="300" />
+</p>
 
 personal toolbox aimed at python,bash and ansible programming.
 
