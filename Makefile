@@ -1,8 +1,7 @@
 prefix = ~
 name = .vim
-deps="vim git tmux fzf"
-
 SHELL= /bin/bash
+
 all: install
 
 clean:
@@ -23,17 +22,13 @@ install: clean
 	@if [[ "$(shell grep 'alias j=' ~/.bashrc )" == "" ]]; then\
 		echo "alias j=project.sh" >> ~/.bashrc;\
 	fi
-	
 	# add bin to PATH variable if not present
 	@if [[ "$(shell grep 'vim_cfg' ~/.bashrc )" == "" ]]; then\
 		echo 'export PATH=$$PATH:$(shell pwd)/bin' >> ~/.bashrc;\
 	fi
-	
 	# install vim configs
-	ln -fs $(shell pwd) $(prefix)/$(name)
-	@echo "remember to install $(deps)"
+	ln -fs $(shell pwd)/vim $(prefix)/$(name)
 
-update: uninstall install
 uninstall: clean
 	# restore old vim configs if present
 	@if [[ -e $(prefix)/.vimrc.old ]]; then\
@@ -42,11 +37,9 @@ uninstall: clean
 	@if [[ -e $(prefix)/$(name).old ]]; then\
 		mv $(prefix)/$(name).old $(prefix)/$(name);\
 	fi
-	
 	# remove project.sh alias
 	sed -i 's/alias j=.*//g' ~/.bashrc
 	# remove PATH exports
 	sed -i 's/.*vim_cfg.*//g' ~/.bashrc
-
 
 .PHONY: all install uninstall clean update
