@@ -6,10 +6,7 @@
 
 ## GOALS
 
-The main objective is to have a simple, quick and efficient mini dev-environment that can run on a pletora of different system without reling on some random dependencies
-- **portability**: these configurations are meant to be used in any possible environment (*from personal desktops to remote, terminal only machines*)  and any possible os (*primarly arch, ubuntu and debian at the leatest versions*)
-- **plugin-less**: avoid to depend on external plugins
-- **simplicity**: quick, easy installation and update procedures
+The main objective is to have a simple, quick and efficient mini dev-environment that can run on a pletora of different systems without reling on some complex dependencies
 
 ## INSTALLATION
 
@@ -26,7 +23,7 @@ to uninstall run the `make uninstall` command
 
 ## HOW IT WORKS
 
-The toolbox consists on a minimal vim configuration with lsp support for some programs, deps for minimal functions are listed in the `./configure` script, other programs can be installed for additional functionalities:
+The toolbox consists on a minimal vim configuration and some usefull bash scripts. Deps for minimal functions are listed in the `./configure` script, other programs can be installed for additional functionalities:
 
 - `wl-clipboard` for clipboard copypaste shortcuts (*remote servers not supported*)
 - `vim-ale` for lsp features and code analisys
