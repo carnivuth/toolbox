@@ -1,0 +1,14 @@
+#!/bin/bash
+source /etc/os-release
+DEPS="vim git tmux fzf"
+[[ "$(whoami)" != "root" ]]  && exit 1
+case $ID in
+        "arch")
+                pacman -S $DEPS
+                ;;
+        "debian"|"ubuntu")
+                apt install $DEPS
+	              mkdir -p /usr/share/vim/vimfiles/plugin/
+                ln -s /usr/share/doc/fzf/examples/plugin/fzf.vim /usr/share/vim/vimfiles/plugin/
+                ;;
+esac
