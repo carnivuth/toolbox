@@ -1,6 +1,6 @@
 #!/bin/bash
 source /etc/os-release
-DEPS="vim git tmux fzf"
+DEPS="gawk make vim git tmux fzf"
 [[ "$(whoami)" != "root" ]] && echo "run as root" && exit 1
 case $ID in
         "arch")
