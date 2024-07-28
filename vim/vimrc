@@ -200,3 +200,7 @@ vnoremap m <ESC>`>a$<ESC>`<i$<ESC>
 vnoremap mm <ESC>`>a$$<ESC>`<i$$<ESC>
 vnoremap <C-i> <ESC>`>a*<ESC>`<i*<ESC>
 vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>
+
+" install programs script utility
+nnoremap <Leader>Si :! store.sh install<CR>
+nnoremap <Leader>Sr :! store.sh remove<CR>
