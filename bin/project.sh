@@ -5,6 +5,8 @@ DEPS="vim tmux"
 help(){
         echo "Usage $0 [project folder]"
         echo "open default tmux configuration in the given folder"
+        echo "Usage $0 -k [project folder]"
+        echo "kill tmux session with this name"
 }
 
 checks(){
@@ -20,6 +22,24 @@ checks(){
   return 0
 }
 
+kill(){
+
+  checks "$1" || exit 1
+  
+  # set  variable based on parameters
+  if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
+
+    SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
+
+    if [[ "$SESSION_STATUS" != '' ]]; then
+      # kill if session exists 
+      tmux kill-session -t "$PROJECT_NAME"
+      echo "session $PROJECT_NAME killed"
+    else
+      echo "session $PROJECT_NAME does not exists"
+    fi
+
+}
 open_project(){
 
   # do checks
@@ -29,7 +49,7 @@ open_project(){
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
-    SESSION_STATUS="$(tmux ls | grep "$PROJECT_NAME")"
+    SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
     if [[ "$SESSION_STATUS" != '' ]]; then
 
@@ -57,6 +77,9 @@ open_project(){
 }
 
 case $1 in
+    -k)
+       kill $2
+       ;;
     -h)
        help
        ;;
