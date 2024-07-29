@@ -128,7 +128,7 @@ if  ! empty(glob('/usr/bin/lazygit'))
   nmap <Leader>gg :!lazygit<CR>
 else
   " if lazygit is absent, handy solution
-  nmap <Leader>gg :!~/.vim/bin/lz_git.sh<CR>
+  nmap <Leader>gg :! lz_git.sh<CR>
 endif
 
 " fzf options
