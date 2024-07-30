@@ -5,32 +5,48 @@ notify(){
   TOPIC="$1"
   shift
   COMMAND="$@"
-  eval "$COMMAND" && curl "$ENDPOINT/$TOPIC" -d "SUCCESS $COMMAND" -X POST || curl "$ENDPOINT/$TOPIC" -d "FAILURE $COMMAND" -X POST
+  OUTPUT="$(mktemp)"
+  eval "$COMMAND" > "$OUTPUT" 2>&1
+  RESULT="$?"
+
+  if [[ "$RESULT" == 0 ]]; then
+    curl "$ENDPOINT/$TOPIC" \
+            -X POST \
+            -H "Title: SUCCESS $COMMAND" \
+            -d "$(cat $OUTPUT)"
+  else
+    curl "$ENDPOINT/$TOPIC" \
+            -X POST \
+            -H "Title: FAILURE $COMMAND" \
+            -d "$(cat $OUTPUT)"
+  fi
 }
+
 help(){
-        echo "usage $O -t TOPIC COMMAND "
+  echo "usage $O -t TOPIC COMMAND "
 }
+
 if [[ "$#" -lt "3" ]]; then
-        echo "error wrong parameters"
-        help
-        exit 1
+  echo "error wrong parameters"
+  help
+  exit 1
 fi
 
 # get option parameters
 while getopts t: flag; do
-    case "${flag}" in
+  case "${flag}" in
     t)
-            TOPIC=${OPTARG}
-            shift
-            shift
-            ;;
-    esac
+      TOPIC=${OPTARG}
+      shift
+      shift
+      ;;
+  esac
 done
 
 if [[ "$TOPIC" == '' ]]; then
-        echo "no topic provided"
-        help
-        exit 1
+  echo "no topic provided"
+  help
+  exit 1
 fi
 
 notify "$TOPIC" "$@"
