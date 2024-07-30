@@ -6,6 +6,7 @@ notify(){
   shift
   COMMAND="$@"
   OUTPUT="$(mktemp)"
+  echo "$OUTPUT"
   eval "$COMMAND" > "$OUTPUT" 2>&1
   RESULT="$?"
 
