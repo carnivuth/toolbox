@@ -18,16 +18,9 @@ install: clean
 	@if [[ -e $(prefix)/$(name) ]]; then\
 		mv $(prefix)/$(name) $(prefix)/$(name).old;\
 	fi
-	# add alias for project.sh script if not present
-	@if [[ "$(shell grep 'alias j=' ~/.bashrc )" == "" ]]; then\
-		echo "alias j='project.sh'" >> ~/.bashrc;\
-	fi
-	# add alias for store.sh script if not present
-	@if [[ "$(shell grep 'alias si=' ~/.bashrc )" == "" ]]; then\
-		echo "alias si='store.sh install'" >> ~/.bashrc;\
-	fi
-	@if [[ "$(shell grep 'alias sr=' ~/.bashrc )" == "" ]]; then\
-		echo "alias sr='store.sh remove'" >> ~/.bashrc;\
+	# add shell integration to PATH variable if not present
+	@if [[ "$(shell grep 'source .*toolbox.*' ~/.bashrc )" == "" ]]; then\
+		echo 'source $(shell pwd)/bash_integration.sh' >> ~/.bashrc;\
 	fi
 	# add bin to PATH variable if not present
 	@if [[ "$(shell grep 'toolbox' ~/.bashrc )" == "" ]]; then\
@@ -44,11 +37,7 @@ uninstall: clean
 	@if [[ -e $(prefix)/$(name).old ]]; then\
 		mv $(prefix)/$(name).old $(prefix)/$(name);\
 	fi
-	# remove project.sh alias
-	sed -i 's/alias j=.*//g' ~/.bashrc
-	sed -i 's/alias si=.*//g' ~/.bashrc
-	sed -i 's/alias sr=.*//g' ~/.bashrc
-	# remove PATH exports
+	# remove bashrc parameters
 	sed -i 's/.*toolbox.*//g' ~/.bashrc
 
 .PHONY: all install uninstall clean update
