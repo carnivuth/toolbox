@@ -22,6 +22,7 @@ install: clean
 	@if [[ "$(shell grep 'alias j=' ~/.bashrc )" == "" ]]; then\
 		echo "alias j='project.sh'" >> ~/.bashrc;\
 	fi
+	# add alias for store.sh script if not present
 	@if [[ "$(shell grep 'alias si=' ~/.bashrc )" == "" ]]; then\
 		echo "alias si='store.sh install'" >> ~/.bashrc;\
 	fi
@@ -29,7 +30,7 @@ install: clean
 		echo "alias sr='store.sh remove'" >> ~/.bashrc;\
 	fi
 	# add bin to PATH variable if not present
-	@if [[ "$(shell grep 'vim_cfg' ~/.bashrc )" == "" ]]; then\
+	@if [[ "$(shell grep 'toolbox' ~/.bashrc )" == "" ]]; then\
 		echo 'export PATH=$$PATH:$(shell pwd)/bin' >> ~/.bashrc;\
 	fi
 	# install vim configs
@@ -44,10 +45,10 @@ uninstall: clean
 		mv $(prefix)/$(name).old $(prefix)/$(name);\
 	fi
 	# remove project.sh alias
-	sed -i '/alias j=.*/d' ~/.bashrc
-	sed -i '/alias si=.*/d' ~/.bashrc
-	sed -i '/alias sr=.*/d' ~/.bashrc
+	sed -i 's/alias j=.*//g' ~/.bashrc
+	sed -i 's/alias si=.*//g' ~/.bashrc
+	sed -i 's/alias sr=.*//g' ~/.bashrc
 	# remove PATH exports
-	sed -i '/.*toolbox.*/d' ~/.bashrc
+	sed -i 's/.*toolbox.*//g' ~/.bashrc
 
 .PHONY: all install uninstall clean update
