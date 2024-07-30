@@ -20,7 +20,13 @@ install: clean
 	fi
 	# add alias for project.sh script if not present
 	@if [[ "$(shell grep 'alias j=' ~/.bashrc )" == "" ]]; then\
-		echo "alias j=project.sh" >> ~/.bashrc;\
+		echo "alias j='project.sh'" >> ~/.bashrc;\
+	fi
+	@if [[ "$(shell grep 'alias si=' ~/.bashrc )" == "" ]]; then\
+		echo "alias si='store.sh install'" >> ~/.bashrc;\
+	fi
+	@if [[ "$(shell grep 'alias sr=' ~/.bashrc )" == "" ]]; then\
+		echo "alias sr='store.sh remove'" >> ~/.bashrc;\
 	fi
 	# add bin to PATH variable if not present
 	@if [[ "$(shell grep 'vim_cfg' ~/.bashrc )" == "" ]]; then\
@@ -39,6 +45,8 @@ uninstall: clean
 	fi
 	# remove project.sh alias
 	sed -i 's/alias j=.*//g' ~/.bashrc
+	sed -i 's/alias si=.*//g' ~/.bashrc
+	sed -i 's/alias sr=.*//g' ~/.bashrc
 	# remove PATH exports
 	sed -i 's/.*vim_cfg.*//g' ~/.bashrc
 
