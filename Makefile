@@ -44,10 +44,10 @@ uninstall: clean
 		mv $(prefix)/$(name).old $(prefix)/$(name);\
 	fi
 	# remove project.sh alias
-	sed -i 's/alias j=.*//g' ~/.bashrc
-	sed -i 's/alias si=.*//g' ~/.bashrc
-	sed -i 's/alias sr=.*//g' ~/.bashrc
+	sed -i '/alias j=.*/d' ~/.bashrc
+	sed -i '/alias si=.*/d' ~/.bashrc
+	sed -i '/alias sr=.*/d' ~/.bashrc
 	# remove PATH exports
-	sed -i 's/.*vim_cfg.*//g' ~/.bashrc
+	sed -i '/.*toolbox.*/d' ~/.bashrc
 
 .PHONY: all install uninstall clean update
