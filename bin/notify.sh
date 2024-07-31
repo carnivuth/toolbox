@@ -7,7 +7,7 @@ notify(){
   COMMAND="$@"
   OUTPUT="$(mktemp)"
   echo "$OUTPUT"
-  eval "$COMMAND" > "$OUTPUT" 2>&1
+  eval "$COMMAND"  "$OUTPUT" 2>&1 | tee "$OUTPUT"
   RESULT="$?"
 
   if [[ "$RESULT" == 0 ]]; then
