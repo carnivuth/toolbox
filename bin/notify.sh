@@ -14,12 +14,14 @@ notify(){
     curl "$ENDPOINT/$TOPIC" \
             -X POST \
             -H "Title: SUCCESS $COMMAND" \
-            -d "$(cat $OUTPUT)"
+            -H "Filename: $OUTPUT" \
+            -T "$OUTPUT"
   else
     curl "$ENDPOINT/$TOPIC" \
             -X POST \
             -H "Title: FAILURE $COMMAND" \
-            -d "$(cat $OUTPUT)"
+            -H "Filename: $OUTPUT" \
+            -T "$OUTPUT"
   fi
 }
 
