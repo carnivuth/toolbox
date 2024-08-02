@@ -19,7 +19,7 @@ cd toolbox
 ./config
 make
 ```
-to uninstall run the `make uninstall` command
+to uninstall run the `make uninstall` command, to uninstall dependencies run `./configure uninstall`
 
 ## HOW IT WORKS
 
