@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DEPS="vim tmux"
+SECOND_WINDOW_NAME="worker"
+MAIN_WINDOW_NAME="vim"
 
 help(){
         echo "Usage $0 [project folder]"
@@ -25,14 +27,14 @@ checks(){
 kill(){
 
   checks "$1" || exit 1
-  
+
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
     SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
     if [[ "$SESSION_STATUS" != '' ]]; then
-      # kill if session exists 
+      # kill if session exists
       tmux kill-session -t "$PROJECT_NAME"
       echo "session $PROJECT_NAME killed"
     else
@@ -55,7 +57,8 @@ open_project(){
 
       # if session already exists attach to the session
       tmux attach-session -t "$PROJECT_NAME"\; \
-      selectp -t 0 \; \
+      select-window -t "$MAIN_WINDOW_NAME" \; \
+      select-pane -t 0\; \
       bind -r h select-pane -L\; \
       bind -r k select-pane -U\; \
       bind -r j select-pane -D\; \
@@ -65,9 +68,11 @@ open_project(){
 
       # start a new session in the given directory
       [[ -d "$1" ]] && cd "$1"
-      tmux new  -s "$PROJECT_NAME" vim \; \
+      tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim \; \
       split-window  -v -l 6 \; \
-      selectp -t 0\; \
+      new-window -n "$SECOND_WINDOW_NAME" \; \
+      select-window -t "$MAIN_WINDOW_NAME" \; \
+      select-pane -t 0\; \
       bind -r h select-pane -L\; \
       bind -r k select-pane -U\; \
       bind -r j select-pane -D\; \
