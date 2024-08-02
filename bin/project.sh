@@ -5,10 +5,10 @@ SECOND_WINDOW_NAME="worker"
 MAIN_WINDOW_NAME="vim"
 
 help(){
-        echo "Usage $0 [project folder]"
-        echo "open default tmux configuration in the given folder"
-        echo "Usage $0 -k [project folder]"
-        echo "kill tmux session with this name"
+  echo "Usage $0 [project folder]"
+  echo "open default tmux configuration in the given folder"
+  echo "Usage $0 -k [project folder]"
+  echo "kill tmux session with this name"
 }
 
 checks(){
@@ -31,17 +31,18 @@ kill(){
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
-    SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
+  SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
-    if [[ "$SESSION_STATUS" != '' ]]; then
-      # kill if session exists
-      tmux kill-session -t "$PROJECT_NAME"
-      echo "session $PROJECT_NAME killed"
-    else
-      echo "session $PROJECT_NAME does not exists"
-    fi
+  if [[ "$SESSION_STATUS" != '' ]]; then
+    # kill if session exists
+    tmux kill-session -t "$PROJECT_NAME"
+    echo "session $PROJECT_NAME killed"
+  else
+    echo "session $PROJECT_NAME does not exists"
+  fi
 
 }
+
 open_project(){
 
   # do checks
@@ -51,47 +52,47 @@ open_project(){
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
-    SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
+  SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
-    if [[ "$SESSION_STATUS" != '' ]]; then
+  if [[ "$SESSION_STATUS" != '' ]]; then
 
       # if session already exists attach to the session
       tmux attach-session -t "$PROJECT_NAME"\; \
-      select-window -t "$MAIN_WINDOW_NAME" \; \
-      select-pane -t 0\; \
-      bind -r h select-pane -L\; \
-      bind -r k select-pane -U\; \
-      bind -r j select-pane -D\; \
-      bind -r l select-pane -R
+        select-window -t "$MAIN_WINDOW_NAME" \; \
+          select-pane -t 0\; \
+            bind -r h select-pane -L\; \
+            bind -r k select-pane -U\; \
+            bind -r j select-pane -D\; \
+            bind -r l select-pane -R
 
     else
 
       # start a new session in the given directory
       [[ -d "$1" ]] && cd "$1"
       tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim \; \
-      split-window  -v -l 6 \; \
-      new-window -n "$SECOND_WINDOW_NAME" \; \
-      select-window -t "$MAIN_WINDOW_NAME" \; \
-      select-pane -t 0\; \
-      bind -r h select-pane -L\; \
-      bind -r k select-pane -U\; \
-      bind -r j select-pane -D\; \
-      bind -r l select-pane -R
-    fi
+        split-window  -v -l 6 \; \
+        new-window -n "$SECOND_WINDOW_NAME" \; \
+        select-window -t "$MAIN_WINDOW_NAME" \; \
+          select-pane -t 0\; \
+            bind -r h select-pane -L\; \
+            bind -r k select-pane -U\; \
+            bind -r j select-pane -D\; \
+            bind -r l select-pane -R
+  fi
 
 }
 
 case $1 in
-    -k)
-       kill $2
-       ;;
-    -h)
-       help
-       ;;
-    --help)
-       help
-       ;;
-    *)
-       open_project $1
-       ;;
+  -k)
+    kill $2
+    ;;
+  -h)
+    help
+    ;;
+  --help)
+    help
+    ;;
+  *)
+    open_project $1
+    ;;
 esac

@@ -115,13 +115,13 @@ nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 
 let g:ale_fixers = {
- \   '*': ['remove_trailing_lines', 'trim_whitespace']
-\}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace']
+      \}
 
 " git shortcut
- if  ! empty(glob('/usr/bin/git'))
+if  ! empty(glob('/usr/bin/git'))
   noremap <Leader>G :! git<Space>
- endif
+endif
 
 " yazi shortcut
 if  ! empty(glob('/usr/bin/yazi'))
@@ -144,7 +144,7 @@ let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-dow
 
 " set shortcut for fuzzyfinder
 nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
-  nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>
+nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>
 
 if  ! empty(glob('./.git'))
   " show only git managed files
@@ -211,3 +211,6 @@ vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>
 " install programs script utility
 nnoremap <Leader>Si :! store.sh install<CR>
 nnoremap <Leader>Sr :! store.sh remove<CR>
+
+" indent all file
+nnoremap <Leader>i ggVG=
