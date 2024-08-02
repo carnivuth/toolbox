@@ -1,14 +1,39 @@
 #!/bin/bash
 source /etc/os-release
-DEPS="gawk make vim git tmux fzf"
+OPT_DEPS="tmux fzf"
+DEPS="gawk make vim git $OPT_DEPS"
 [[ "$(whoami)" != "root" ]] && echo "run as root" && exit 1
-case $ID in
-        "arch")
-                pacman -S $DEPS
-                ;;
-        "debian"|"ubuntu")
-                apt install $DEPS
-	              mkdir -p /usr/share/vim/vimfiles/plugin/
-                ln -s /usr/share/doc/fzf/examples/plugin/fzf.vim /usr/share/vim/vimfiles/plugin/
-                ;;
+
+install(){
+  case $ID in
+    "arch")
+      pacman -S $DEPS
+      ;;
+    "debian"|"ubuntu")
+      apt install $DEPS
+      mkdir -p /usr/share/vim/vimfiles/plugin/
+      ln -s /usr/share/doc/fzf/examples/plugin/fzf.vim /usr/share/vim/vimfiles/plugin/
+      ;;
+  esac
+}
+
+uninstall(){
+  case $ID in
+    "arch")
+      pacman -Rns $OPT_DEPS
+      ;;
+    "debian"|"ubuntu")
+      apt remove $OPT_DEPS
+      rm -r /usr/share/vim/vimfiles/plugin/fzf.vim
+      ;;
+  esac
+}
+
+case $1 in
+  "uninstall")
+    uninstall
+    ;;
+  *)
+    install
+    ;;
 esac
