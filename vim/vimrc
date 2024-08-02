@@ -30,6 +30,7 @@ filetype indent on
 
 " set space as tab characters and tab dimension to 2
 set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " While searching though a file incrementally highlight matching characters as you type.
@@ -83,7 +84,6 @@ nnoremap <Leader>Vc :tabe $MYVIMRC<CR>
 
 " reload vim configuration
 nnoremap <Leader>Vr :source $MYVIMRC<CR>
-noremap <Leader>e :tabedit .<CR>
 
 " ALE options
 
@@ -122,6 +122,13 @@ let g:ale_fixers = {
  if  ! empty(glob('/usr/bin/git'))
   noremap <Leader>G :! git<Space>
  endif
+
+" yazi shortcut
+if  ! empty(glob('/usr/bin/yazi'))
+  noremap <Leader>e :!yazi<CR>
+else
+  noremap <Leader>e :tabedit .<CR>
+endif
 
 " lazygit shortcut
 if  ! empty(glob('/usr/bin/lazygit'))
