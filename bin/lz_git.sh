@@ -1,9 +1,5 @@
 #!/bin/bash
-show_menu(){
-  echo "$( git ls-files --exclude-standard -mo | fzf --cycle --multi --preview 'git diff {}')"
-}
-
-selected=$(show_menu)
+selected=$(git ls-files --exclude-standard -mo | fzf --cycle --multi --preview 'git diff {}')
 
 if [[ "$selected" != "" ]]; then
   git add "$selected"
