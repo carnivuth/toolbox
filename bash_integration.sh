@@ -1,6 +1,7 @@
 #!/bin/bash
 export FZF_DEFAULT_OPTS='--cycle --bind "tab:toggle-up,btab:toggle-down"'
 alias j='project.sh'
+alias tls='tmux ls'
 alias si='store.sh install'
 alias sr='store.sh remove'
 alias n='notify.sh'
