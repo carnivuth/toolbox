@@ -12,15 +12,6 @@ function! LoadFile(filename)
   endif
 endfunction
 
-" load ale configurations
-call LoadFile("ale_configs.vim")
-" load git shortcuts
-call LoadFile("git.vim")
-" load fzf configurations
-call LoadFile("fzf_configs.vim")
-" load tabline configuration
-call LoadFile("tabline.vim")
-
 " set colorscheme
 colorscheme slate
 
@@ -170,3 +161,12 @@ nnoremap <Leader>Pr :! store.sh remove<CR>
 
 " indent all file
 nnoremap <Leader>i ggVG=
+
+" load ale configurations
+call LoadFile("ale_configs.vim")
+" load git shortcuts
+call LoadFile("git.vim")
+" load fzf configurations
+call LoadFile("fzf_configs.vim")
+" load tabline configuration
+call LoadFile("tabline.vim")
