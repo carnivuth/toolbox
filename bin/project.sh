@@ -30,7 +30,7 @@ checks(){
 kill(){
 
   checks "$1" || exit 1
-
+  
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
@@ -76,7 +76,7 @@ open_project(){
     else
 
       # start a new session in the given directory
-      [[ -d "$1" ]] && cd "$1"
+      [[ -d "$1" ]] && cd "$1" || exit 1
       tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim $TODO_FILE \; \
         split-window  -v -l 6 \; \
         new-window -n "$SECOND_WINDOW_NAME" \; \
@@ -92,7 +92,7 @@ open_project(){
 
 case $1 in
   -k)
-    kill $2
+    kill "$2"
     ;;
   -h)
     help
@@ -101,6 +101,6 @@ case $1 in
     help
     ;;
   *)
-    open_project $1
+    open_project "$1"
     ;;
 esac
