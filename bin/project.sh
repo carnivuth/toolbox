@@ -1,6 +1,8 @@
 #!/bin/bash
 
-DEPS="vim tmux"
+set -x
+
+DEPS='tmux vim'
 SECOND_WINDOW_NAME="worker"
 MAIN_WINDOW_NAME="vim"
 
@@ -13,8 +15,11 @@ help(){
 
 checks(){
 
-  # check if tmux is installed
-  [ ! -x "$(which tmux)" ] && echo tmux binary not found  && return 1
+  # check if deps are installed
+
+  for dep in $DEPS; do
+    [ ! -x "$(which "$dep")" ] && echo "$dep" binary not found  && return 1
+  done
 
   # avoid nested sessions
   [ -n "$TMUX" ] && echo already in a tmux session  && return 1
@@ -51,6 +56,11 @@ open_project(){
 
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
+  if [[ "$1" == '.' ]]; then PROJECT_NAME="$(basename "$(pwd)")";fi
+
+  # check if a todo file exists
+  if [[ -f "$1/todo.md" ]]; then TODO_FILE="todo.md"; fi
+  if [[ "$1" == '' ]] && [[ -f "todo.md" ]]; then TODO_FILE="todo.md"; fi
 
   SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
@@ -69,7 +79,7 @@ open_project(){
 
       # start a new session in the given directory
       [[ -d "$1" ]] && cd "$1"
-      tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim \; \
+      tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim $TODO_FILE \; \
         split-window  -v -l 6 \; \
         new-window -n "$SECOND_WINDOW_NAME" \; \
         select-window -t "$MAIN_WINDOW_NAME" \; \
