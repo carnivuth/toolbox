@@ -1,6 +1,6 @@
 #!/bin/bash
 source /etc/os-release
-OPT_DEPS="tmux fzf vim-ale"
+OPT_DEPS="tmux fzf vim-ale ripgrep"
 VIM_LINK_FOLDER="$VIM_LINK_FOLDER/"
 DEPS="gawk make vim git $OPT_DEPS"
 [[ "$(whoami)" != "root" ]] && echo "run as root" && exit 1

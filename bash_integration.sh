@@ -1,4 +1,5 @@
 #!/bin/bash
+export FZF_DEFAULT_OPTS='--cycle --bind "tab:toggle-up,btab:toggle-down"'
 alias j='project.sh'
 alias si='store.sh install'
 alias sr='store.sh remove'
