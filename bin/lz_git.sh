@@ -1,9 +1,11 @@
 #!/bin/bash
-git diff --name-only \| fzf --cycle --multi --preview 'git diff {}' \| xargs git add
-get_elements(){
-  echo "$(git diff --name-only | fzf --cycle --multi --preview 'git diff {}')"
+show_menu(){
+  echo "$( git ls-files --exclude-standard -mo | fzf --cycle --multi --preview 'git diff {}')"
 }
-selected=$(get_elements)
+
+selected=$(show_menu)
+
 if [[ "$selected" != "" ]]; then
   git add "$selected"
+  echo "added $selected files for commit"
 fi
