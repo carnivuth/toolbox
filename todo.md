@@ -1,2 +1,2 @@
 # TODO
- - [ ] integrate ranger
+ - [  ] integrate [ranger](https://github.com/francoiscabrol/ranger.vim/blob/master/plugin/ranger.vim)
