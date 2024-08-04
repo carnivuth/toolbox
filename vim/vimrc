@@ -161,6 +161,8 @@ nnoremap <Leader>Pr :! store.sh remove<CR>
 
 " indent all file
 nnoremap <Leader>i ggVG=
+" open todo.md file
+nnoremap <Leader>td :tabedit todo.md<CR>
 
 " load ale configurations
 call LoadFile("ale_configs.vim")
