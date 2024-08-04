@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 DEPS='tmux vim'
 SECOND_WINDOW_NAME="worker"
 MAIN_WINDOW_NAME="vim"
