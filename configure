@@ -15,10 +15,10 @@ done
 install(){
   case $ID in
     "arch")
-      pacman -S $DEPS
+      pacman -S $DEPS --noconfirm
       ;;
     "debian"|"ubuntu")
-      apt install $DEPS
+      apt install $DEPS -y
       # installing fzf vim integration
       mkdir -p $VIM_LINK_FOLDER/plugin/ && ln -fs /usr/share/doc/fzf/examples/plugin/fzf.vim $VIM_LINK_FOLDER/plugin/
       # installing vim-ale vim integration
@@ -34,7 +34,7 @@ install(){
 uninstall(){
   case $ID in
     "arch")
-      pacman -Rns $OPT_DEPS
+      pacman -Rns $OPT_DEPS --noconfirm
       ;;
     "debian"|"ubuntu")
       rm -r $VIM_LINK_FOLDER/plugin/fzf.vim
@@ -43,7 +43,7 @@ uninstall(){
       unlink_files /usr/share/vim-ale/rplugin rplugin
       unlink_files /usr/share/vim-ale/syntax syntax
       unlink_files /usr/share/vim-ale/ale_linters ale_linters
-      apt remove $OPT_DEPS
+      apt remove $OPT_DEPS -y
       ;;
   esac
 }
