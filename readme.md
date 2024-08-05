@@ -15,8 +15,8 @@ clone repository and run configure and make
 ```bash
 git clone https://github.com/carnivuth/toolbox
 cd toolbox
-# from root
-./config
+# run configure as root
+./configure
 make
 ```
 to uninstall run the `make uninstall` command, to uninstall dependencies run `./configure uninstall`
