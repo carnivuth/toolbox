@@ -10,26 +10,29 @@ The main objective is to have a simple, quick and efficient mini dev-environment
 
 ## INSTALLATION
 
-clone repository and run configure and make
+clone repository and run installation script
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
 cd toolbox
-# run configure as root
-./configure
-make
+./toolbox
 ```
-to uninstall run the `make uninstall` command, to uninstall dependencies run `./configure uninstall`
 
-## HOW IT WORKS
+to uninstall run:
 
-The toolbox consists on a minimal vim configuration and some usefull bash scripts. Deps for minimal functions are listed in the `./configure` script, other programs can be installed for additional functionalities:
+```bash
+cd toolbox
+./toolbox uninstall
+```
 
-- `wl-clipboard` for clipboard copypaste shortcuts (*remote servers not supported*)
-- `vim-ale` for lsp features and code analisys
-- `vim-ansible` for playbooks and role linting
-- `pyright` for python stuff
-- `gopls` for go programs
+## FEATURES
 
-the `.configure` script install minimal dependencies and configure fzf vim plugin in debian and derivatives distros.
-the makefile backups existing vim configurations for the current user and links in `$HOME/.vim` the `vim` directory
+The toolbox consists on a minimal vim configuration and some usefull bash scripts
+
+- `project.sh` to open project in a predefined tmux session (tmuxify style)
+- `notify.sh` notify trough ntfy long running processes
+- `store.sh` install packages quick and easy
+
+vim comes preconfigured with some personal bindings and fzf integrations, basic ftplugin for some devops tools and languages (terraform, python, bash, yaml and others), vim-ale is also preinstalled and configured for some basic linting with other languages
+
+Existing vim configuration are backupped and restored after uninstallation,
