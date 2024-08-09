@@ -67,6 +67,7 @@ function install_toolbox(){
 
 function uninstall_toolbox(){
   echo "removing config with stow"
+  rm -rf "$HOME/.vim/plugged"
   stow --target="$HOME" -D vim
   stow --target="$HOME" -D etc
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
