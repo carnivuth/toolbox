@@ -2,6 +2,13 @@
 " useful lkn for vimscripting https://devhints.io/vimscript
 " fzf vim function docs https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
+"vim plug plugins
+call plug#begin()
+" ale plugin
+Plug 'junegunn/fzf'
+Plug 'dense-analysis/ale'
+call plug#end()
+
 " path to .vim folder
 let g:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 

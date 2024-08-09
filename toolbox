@@ -11,7 +11,7 @@ VIM_LINK_FOLDER="/usr/share/vim/vimfiles"
 LANG_SERVERS="shellcheck gopls"
 
 # dependencies that can be removed after uninstall
-OPT_DEPS="tmux fzf ripgrep vim-ale"
+OPT_DEPS="tmux fzf ripgrep"
 
 # vital dependencies
 DEPS="stow gawk vim git $OPT_DEPS"
@@ -25,8 +25,6 @@ install_deps(){
       ;;
     "debian"|"ubuntu")
       apt install $DEPS -y
-      # installing fzf vim integration
-      mkdir -p "$VIM_LINK_FOLDER/plugin/" && ln -fs "/usr/share/doc/fzf/examples/plugin/fzf.vim" "$VIM_LINK_FOLDER/plugin/"
       ;;
   esac
 }
@@ -50,7 +48,6 @@ uninstall_deps_language_servers(){
       pacman -Rns $OPT_DEPS $LANG_SERVERS --noconfirm
       ;;
     "debian"|"ubuntu")
-      rm -r "$VIM_LINK_FOLDER/plugin/fzf.vim"
       apt remove $OPT_DEPS $LANG_SERVERS -y
       ;;
   esac
@@ -83,6 +80,7 @@ function install_toolbox(){
     echo "adding toolbox bash integration"
     echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
   fi
+  vim +PlugInstall +qall
 }
 
 function uninstall_toolbox(){
