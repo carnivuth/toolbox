@@ -4,14 +4,8 @@ VIMRC="$HOME/.vimrc"
 VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
-# folder where to link vim plugins installed from debian package
-VIM_LINK_FOLDER="/usr/share/vim/vimfiles"
-
-# language servers to install
-LANG_SERVERS="shellcheck gopls"
-
 # dependencies that can be removed after uninstall
-OPT_DEPS="tmux fzf ripgrep"
+OPT_DEPS="tmux fzf ripgrep shellcheck gopls"
 
 # vital dependencies
 DEPS="stow gawk vim git $OPT_DEPS"
@@ -29,26 +23,14 @@ install_deps(){
   esac
 }
 
-install_language_servers(){
+uninstall_deps(){
   [[ "$(whoami)" != "root" ]] && echo "run $0 as root" && exit 1
   case $ID in
     "arch")
-      pacman -S $LANG_SERVERS --noconfirm
+      pacman -Rns $OPT_DEPS --noconfirm
       ;;
     "debian"|"ubuntu")
-      apt install $LANG_SERVERS -y
-      ;;
-  esac
-}
-
-uninstall_deps_language_servers(){
-  [[ "$(whoami)" != "root" ]] && echo "run $0 as root" && exit 1
-  case $ID in
-    "arch")
-      pacman -Rns $OPT_DEPS $LANG_SERVERS --noconfirm
-      ;;
-    "debian"|"ubuntu")
-      apt remove $OPT_DEPS $LANG_SERVERS -y
+      apt remove $OPT_DEPS -y
       ;;
   esac
 }
@@ -108,28 +90,24 @@ case "$COMMAND" in
   "uninstall_toolbox")
     uninstall_toolbox
     ;;
-  "install_language_servers")
-    install_language_servers
-    ;;
   "install_deps")
     install_deps
     ;;
-  "uninstall_deps_language_servers")
-    uninstall_deps_language_servers
+  "uninstall_deps")
+    uninstall_deps
     ;;
   "help"|"--help")
-    echo "usage $0 [install_toolbox|uninstall_toolbox|install_language_servers|install_deps|uninstall_deps_language_servers]"
+    echo "usage $0 [install_toolbox|uninstall_toolbox||install_deps|uninstall_deps]"
     echo "to install from scratch run:"
-    echo "$0 install_deps"
-    echo "$0 install_toolbox"
+    echo "$0"
     ;;
   'uninstall')
     # if not running as root call deps nstallation with sudo
     if [[ "$(whoami)" != "root" ]]; then
       echo "installing deps and toolbox"
-      sudo "$0" uninstall_deps_language_servers && uninstall_toolbox
+      sudo "$0" uninstall_deps && uninstall_toolbox
     else
-      "$0" uninstall_deps_language_servers && uninstall_toolbox
+      "$0" uninstall_deps && uninstall_toolbox
     fi
     ;;
   *)
