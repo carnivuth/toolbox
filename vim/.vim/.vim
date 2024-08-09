@@ -1,1 +1,0 @@
-toolbox/vim/.vim
