@@ -1,5 +1,8 @@
 " ALE options
-packadd! ale
+
+if  ! empty(glob('/usr/share/vim-ale'))
+  packadd! ale
+endif
 
 " enable default ALE completition
 let g:ale_completion_enabled = 1
