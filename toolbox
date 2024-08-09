@@ -5,7 +5,7 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # folder where to link vim plugins installed from debian package
-VIM_LINK_FOLDER="$VIM_LINK_FOLDER/"
+VIM_LINK_FOLDER="/usr/share/vim/vimfiles"
 
 # language servers to install
 LANG_SERVERS="shellcheck gopls"
@@ -76,33 +76,37 @@ uninstall_deps_language_servers(){
 
 # USER FUNCTIONS
 function install_toolbox(){
+  # create directories for stow, if they don't exist
+  mkdir -p "$HOME/.config"
+  mkdir -p "$HOME/.local/bin"
+  mkdir -p "$VIM_FOLDER"
+  # stow binaries and configurations
+  stow --target="$HOME" etc
+  stow --target="$HOME" bin
   # backup .vimrc than if stow fails backup .vim folder and try again
   if [[ -f "$VIMRC" ]]; then
     echo "backup vimrc file"
     mv "$VIMRC" "$VIMRC.$BACKUP_SUFFIX"
   fi
-  if ! stow vim; then
+  if ! stow --target="$HOME" vim; then
     if [[ -d "$VIM_FOLDER" ]]; then
       echo "backup .vim directory"
       mv "$VIM_FOLDER" "$VIM_FOLDER.$BACKUP_SUFFIX"
     fi
-    stow vim
+    stow --target="$HOME" vim
   fi
 
   # editing PATH variable and sourcing shell integration
-  if [[ "$(grep 'toolbox/bash_integration' "$HOME/.bashrc" )" == "" ]]; then
+  if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration.sh' "$HOME/.bashrc" )" == "" ]]; then
     echo "adding toolbox bash integration"
-    echo "source $(pwd)/bash_integration.sh" >> "$HOME/.bashrc"
-  fi
-  if [[ "$(grep 'toolbox/bin' "$HOME/.bashrc" )" == "" ]]; then
-    echo "adding toolbox bins to path"
-    echo "export PATH=\$PATH:$(pwd)/bin" >> "$HOME/.bashrc"
+    echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
   fi
 }
 
 function uninstall_toolbox(){
   echo "removing config with stow"
-  stow -D vim
+  stow --target="$HOME" -D vim
+  stow --target="$HOME" -D etc
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
     echo "restoring old vimrc"
     mv "$VIMRC.$BACKUP_SUFFIX" "$VIMRC"
@@ -112,7 +116,7 @@ function uninstall_toolbox(){
     mv "$VIM_FOLDER.$BACKUP_SUFFIX" "$VIM_FOLDER";
   fi
   echo "removing lines from bashrc"
-  sed -i 's/.*toolbox.*//g' "$HOME/.bashrc"
+  sed '/source \$HOME\/\.config\/toolbox\/bash_integration.sh/d' -i "$HOME/.bashrc"
 }
 
 
