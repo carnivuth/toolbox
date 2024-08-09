@@ -1,7 +1,6 @@
 " fzf options
 let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
-
 " set shortcut for fuzzyfinder
 nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
 nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>

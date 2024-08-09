@@ -16,13 +16,6 @@ OPT_DEPS="tmux fzf ripgrep vim-ale"
 # vital dependencies
 DEPS="stow gawk vim git $OPT_DEPS"
 
-unlink_files(){ dir="$1"
-  dir_name="$2"
-  ls $dir | while read file; do
-  rm -f "$VIM_LINK_FOLDER/$dir_name/$file"
-done
-}
-
 # ROOT FUNCTIONS
 install_deps(){
   [[ "$(whoami)" != "root" ]] && echo "run $0 as root" && exit 1
@@ -34,12 +27,6 @@ install_deps(){
       apt install $DEPS -y
       # installing fzf vim integration
       mkdir -p "$VIM_LINK_FOLDER/plugin/" && ln -fs "/usr/share/doc/fzf/examples/plugin/fzf.vim" "$VIM_LINK_FOLDER/plugin/"
-      # installing vim-ale vim integration
-      mkdir -p "$VIM_LINK_FOLDER/autoload/" && ln -fs /usr/share/vim-ale/autoload/* "$VIM_LINK_FOLDER/autoload"
-      mkdir -p "$VIM_LINK_FOLDER/syntax/" && ln -fs /usr/share/vim-ale/syntax/* "$VIM_LINK_FOLDER/syntax"
-      mkdir -p "$VIM_LINK_FOLDER/ftplugin/" && ln -fs /usr/share/vim-ale/ftplugin/* "$VIM_LINK_FOLDER/ftplugin"
-      mkdir -p "$VIM_LINK_FOLDER/rplugin/" && ln -fs /usr/share/vim-ale/rplugin/* "$VIM_LINK_FOLDER/rplugin"
-      mkdir -p "$VIM_LINK_FOLDER/ale_linters/" && ln -fs /usr/share/vim-ale/ale_linters/* "$VIM_LINK_FOLDER/ale_linters"
       ;;
   esac
 }
@@ -64,11 +51,6 @@ uninstall_deps_language_servers(){
       ;;
     "debian"|"ubuntu")
       rm -r "$VIM_LINK_FOLDER/plugin/fzf.vim"
-      unlink_files /usr/share/vim-ale/autoload autoload
-      unlink_files /usr/share/vim-ale/ftplugin ftplugin
-      unlink_files /usr/share/vim-ale/rplugin rplugin
-      unlink_files /usr/share/vim-ale/syntax syntax
-      unlink_files /usr/share/vim-ale/ale_linters ale_linters
       apt remove $OPT_DEPS $LANG_SERVERS -y
       ;;
   esac

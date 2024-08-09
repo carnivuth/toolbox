@@ -1,4 +1,5 @@
 " ALE options
+packadd! ale
 
 " enable default ALE completition
 let g:ale_completion_enabled = 1
