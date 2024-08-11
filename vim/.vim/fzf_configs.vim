@@ -3,6 +3,7 @@ let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-dow
 
 " set shortcut for fuzzyfinder
 nmap <Leader>ff :call fzf#run({'sink':'tabedit'})<CR>
+nmap <Leader>fc :call fzf#run({'sink':'r ! cat'})<CR>
 nmap <Leader>ft :call fzf#run({'source': 'tabs', 'sink':'tabfind'})<CR>
 
 if  ! empty(glob('./.git'))
