@@ -66,28 +66,17 @@ open_project(){
       # if session already exists attach to the session
       tmux attach-session -t "$PROJECT_NAME"\; \
         select-window -t "$MAIN_WINDOW_NAME" \; \
-          select-pane -t 0\; \
-            bind -r h select-pane -L\; \
-            bind -r k select-pane -U\; \
-            bind -r j select-pane -D\; \
-            bind -r l select-pane -R
+          select-pane -t 0 \;
+          else
+            # start a new session in the given directory
+            if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
+            tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim $TODO_FILE \; \
+              split-window  -v -l 6 \; \
+              new-window -n "$SECOND_WINDOW_NAME" \; \
+              select-window -t "$MAIN_WINDOW_NAME" \; \
+                select-pane -t 0 \;
 
-    else
-
-      # start a new session in the given directory
-      if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
-
-      tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim $TODO_FILE \; \
-        split-window  -v -l 6 \; \
-        new-window -n "$SECOND_WINDOW_NAME" \; \
-        select-window -t "$MAIN_WINDOW_NAME" \; \
-          select-pane -t 0\; \
-            bind -r h select-pane -L\; \
-            bind -r k select-pane -U\; \
-            bind -r j select-pane -D\; \
-            bind -r l select-pane -R
   fi
-
 }
 
 case $1 in
