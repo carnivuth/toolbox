@@ -95,8 +95,6 @@ let g:ale_fixers = {
       \}
 
 " vim airline
-" display all buffers
-let g:airline#extensions#tabline#enabled = 1
 
 " KEYMAPS
 " -------------------------------------------------------------------------------------------------------------------------------------
@@ -120,7 +118,7 @@ autocmd BufWritePre :normal mfggVG=`f
 nnoremap <Leader>d :edit todo.md<CR>
 
 " vimrc editing and reload bindings
-nnoremap <Leader>Vr :source $MYVIMRC<CR>
+nnoremap <Leader>Vr :source $MYVIMRC<CR>:AirlineRefresh!<CR>
 nnoremap <Leader>Vc :edit $MYVIMRC<CR>
 
 " common commands for buffers
