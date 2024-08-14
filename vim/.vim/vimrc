@@ -1,23 +1,20 @@
 " USEFULL DOC FOR SCRIPTING
-" useful lkn for vimscripting https://devhints.io/vimscript
-" fzf vim function docs https://github.com/junegunn/fzf/blob/master/README-VIM.md
+" useful link for vimscripting
+" - https://devhints.io/vimscript
+" - https://learnvimscriptthehardway.stevelosh.com
+" - https://github.com/junegunn/fzf/blob/master/README-VIM.md
 
-"vim plug plugins
+" PLUGINS
 call plug#begin()
-" ale plugin
+" fzf plugin
 Plug 'junegunn/fzf'
+" statusline
+Plug 'vim-airline/vim-airline'
+" ale plugin
 Plug 'dense-analysis/ale'
 call plug#end()
 
-" path to .vim folder
-let g:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-
-" load file function for safeguard
-function! LoadFile(filename)
-  if  filereadable(g:path . '/' . a:filename)
-    execute 'source' . expand(g:path) . '/' . expand(a:filename)
-  endif
-endfunction
+" OPTIONS
 
 " set colorscheme
 colorscheme slate
@@ -70,41 +67,95 @@ set showcmd
 " Show the mode you are on the last line.
 set showmode
 
-" KEYMAPS
-" vim maps miniguide
-" for knowledge :help :map
-" [niv][nore]map charsequence charsequence
+" enable status line
+set laststatus=2
 
+" set fzf default options
+let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
+
+" enable default ALE completition
+let g:ale_completion_enabled = 1
+
+" remove error highlight
+let g:ale_set_highlights = 0
+
+" set error messages format
+let g:ale_virtualtext_cursor = 'disabled'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+" enable ALE lint only on filesave
+let g:ale_lint_on_save = 1
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_fixers = {
+      \   '*': ['remove_trailing_lines', 'trim_whitespace']
+      \}
+
+" vim airline
+" display all buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" KEYMAPS
+" -------------------------------------------------------------------------------------------------------------------------------------
 " set space as the leader key
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" close buffer
-nnoremap <Leader>c :bw<CR>
-nnoremap <Leader>C :bw!<CR>
+" find and replace
+nnoremap <Leader>s :s/
+nnoremap <Leader>S :%s/
 
-" save buffer
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>W :wa<CR>
+" packages installation script shortcut
+nnoremap <Leader>pi :PlugInstall<CR>
+nnoremap <Leader>pc :PlugClean<CR>
 
-" quit vim
-nnoremap <Leader>q :qa<CR>
-nnoremap <Leader>Q :qa!<CR>
+" format buffer
+nnoremap <Leader>i mfggVG=`f
+autocmd BufWritePre :normal mfggVG=`f
 
-" open vim configuration
-nnoremap <Leader>Vc :tabe $MYVIMRC<CR>
+" open todo
+nnoremap <Leader>d :edit todo.md<CR>
 
-" reload vim configuration
+" vimrc editing and reload bindings
 nnoremap <Leader>Vr :source $MYVIMRC<CR>
+nnoremap <Leader>Vc :edit $MYVIMRC<CR>
 
+" common commands for buffers
+nnoremap <Leader>Q :qa!<CR>
+nnoremap <Leader>q :qa<CR>
+nnoremap <Leader>W :wa<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>C :bw!<CR>
+nnoremap <Leader>c :bw<CR>
+nnoremap <Leader>j :bnext<CR>
+nnoremap <Leader>k :bprevious<CR>
 
-" yazi shortcut
-if  ! empty(glob('/usr/bin/yazi'))
-  noremap <Leader>e :!yazi<CR>
+" fzf binds
+nmap <Leader>ff :call fzf#run({'sink':'edit'})<CR>
+nmap <Leader>fc :call fzf#run({'sink':'r ! cat'})<CR>
+nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'edit'})<CR>
+
+" ALE bindings
+nnoremap <Leader>l :ALE
+nnoremap <Leader>ld :ALEGoToDefinition<CR>
+nnoremap <Leader>li :ALEGoToImplementation<CR>
+nnoremap <Leader>ln :ALENext<CR>
+nnoremap <Leader>lp :ALEPrevious<CR>
+nnoremap <Leader>lf :ALEFix<CR>
+nnoremap <Leader>lS :ALEStopAllLSPs<CR>
+
+" git bindings
+noremap <Leader>G :! git<Space>
+" lazygit shortcut
+if  ! empty(glob('/usr/bin/lazygit'))
+  nmap <Leader>gg :!lazygit<CR>
 else
-  noremap <Leader>e :tabedit .<CR>
+  " if lazygit is absent, handy solution
+  nmap <Leader>gg :! lz_git.sh<CR>
 endif
-
 
 " keep cursor on center when scrolling files
 nnoremap n nzz
@@ -115,39 +166,8 @@ nnoremap ( (zz
 nnoremap ) )zz
 nnoremap [ [zz
 nnoremap ] ]zz
-
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-
-" wrap word into symbols
-nmap <Leader>m` i`<Esc>ea`<Esc>
-nmap <Leader>m' i'<Esc>ea'<Esc>
-nmap <Leader>m" i"<Esc>ea"<Esc>
-nmap <Leader>m[ i[<Esc>ea]<Esc>
-nmap <Leader>m{ i{<Esc>ea}<Esc>
-nmap <Leader>m( i(<Esc>ea)<Esc>
-nmap <Leader>m< i<<Esc>ea><Esc>
-
-" copy to clipboard (wayland only)
-if ! empty(glob('/usr/bin/wl-copy'))
-  vnoremap <silent>Y :w !wl-copy<CR><CR>
-  nnoremap <silent>Y :call system("wl-copy", @")<CR>
-endif
-
-" tab command shortcut
-nnoremap <Leader>te :tabedit<Space>
-nnoremap <Leader>to :tabonly<CR>
-nnoremap <Leader>tc :tabclose<CR>
-nnoremap <TAB> gt
-nnoremap <S-TAB> gT
-nnoremap <Leader>tn gt
-nnoremap <Leader>tp gT
-nnoremap <Leader>tj :tabmove +1<CR>
-nnoremap <Leader>tj :tabmove +1<CR>
-nnoremap <Leader>tp :tabprevious<CR>
-
-nnoremap <Leader>s :s/
-nnoremap <Leader>S :%s/
 
 " add elements to begining and endig of a visual highlighted block
 vnoremap ` <ESC>`>a`<ESC>`<i`<ESC>
@@ -157,25 +177,11 @@ vnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
 vnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
 vnoremap { <ESC>`>a}<ESC>`<i{<ESC>
 vnoremap {{ <ESC>`>a}}<ESC>`<i{{<ESC>
-vnoremap m <ESC>`>a$<ESC>`<i$<ESC>
-vnoremap mm <ESC>`>a$$<ESC>`<i$$<ESC>
 vnoremap <C-i> <ESC>`>a*<ESC>`<i*<ESC>
 vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>
 
-" install programs script utility
-nnoremap <Leader>Pi :! store.sh install<CR>
-nnoremap <Leader>Pr :! store.sh remove<CR>
-
-" indent all file
-nnoremap <Leader>i ggVG=
-" open todo.md file
-nnoremap <Leader>td :tabedit todo.md<CR>
-
-" load ale configurations
-call LoadFile("ale_configs.vim")
-" load git shortcuts
-call LoadFile("git.vim")
-" load fzf configurations
-call LoadFile("fzf_configs.vim")
-" load tabline configuration
-call LoadFile("tabline.vim")
+" copy to clipboard (wayland only)
+if ! empty(glob('/usr/bin/wl-copy'))
+  vnoremap <silent>Y :w !wl-copy<CR><CR>
+  nnoremap <silent>Y :call system("wl-copy", @")<CR>
+endif
