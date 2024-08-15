@@ -8,7 +8,7 @@ BACKUP_SUFFIX="ct.old"
 OPT_DEPS="tmux fzf ripgrep shellcheck gopls"
 
 # vital dependencies
-DEPS="stow gawk vim git $OPT_DEPS"
+DEPS="which stow gawk vim git $OPT_DEPS"
 
 # ROOT FUNCTIONS
 install_deps(){
