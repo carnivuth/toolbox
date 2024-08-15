@@ -20,14 +20,14 @@ checks(){
   done
 
   # avoid nested sessions
-  [ -n "$TMUX" ] && echo already in a tmux session  && return 1
+  [ -n "$TMUX" ] && echo already in a tmux session && return 1
 
   # check for wrong project parameters
   [ "$1" != '' ] && [ "$(tmux ls | grep "$1" )" == '' ] && [ ! -d "$1" ] && [ ! -L "$1" ] && echo "$1 is not a folder nor a tmux session" && return 1
   return 0
 }
 
-kill(){
+kill_project(){
 
   checks "$1" || exit 1
 
@@ -81,7 +81,7 @@ open_project(){
 
 case $1 in
   -k)
-    kill "$2"
+    kill_project "$2"
     ;;
   -h)
     help
