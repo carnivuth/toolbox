@@ -111,7 +111,7 @@ nnoremap <Leader>pi :PlugInstall<CR>
 nnoremap <Leader>pc :PlugClean<CR>
 
 " format buffer
-nnoremap <Leader>i mfggVG=`f
+nnoremap <Leader>i mfggVG=`fzz
 autocmd BufWritePre :normal mfggVG=`f
 
 " open todo
@@ -132,9 +132,9 @@ nnoremap <Leader>j :bnext<CR>
 nnoremap <Leader>k :bprevious<CR>
 
 " fzf binds
-nmap <Leader>ff :call fzf#run({'sink':'edit'})<CR>
-nmap <Leader>fc :call fzf#run({'sink':'r ! cat'})<CR>
-nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'edit'})<CR>
+nmap <Leader>ff :call fzf#run({'sink':'edit', 'options': '--preview="cat {}"'})<CR>
+nmap <Leader>fc :call fzf#run({'sink':'r ! cat', 'options': '--preview="cat {}"'})<CR>
+nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'edit', 'options': '--preview="cat {}"'})<CR>
 
 " ALE bindings
 nnoremap <Leader>l :ALE
