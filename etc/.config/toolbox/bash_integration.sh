@@ -2,6 +2,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 export FZF_DEFAULT_OPTS='--cycle --bind "tab:toggle-up,btab:toggle-down"'
 alias j='project.sh'
+alias s='sudo'
 alias tls='tmux ls'
 alias tk='tmux kill-session -t'
 alias tm='tmux new-session -A -s $HOSTNAME'
