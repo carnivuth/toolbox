@@ -1,5 +1,5 @@
 #!/bin/bash
-selected=$(git ls-files --exclude-standard -mo | fzf --cycle --multi --preview 'git diff {}')
+selected=$(git ls-files --exclude-standard -mo | fzf --cycle --preview 'git diff {}')
 
 if [[ "$selected" != "" ]]; then
   git add "$selected"
