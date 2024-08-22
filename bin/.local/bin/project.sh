@@ -71,8 +71,8 @@ open_project(){
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
             tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" vim $TODO_FILE \; \
-              split-window  -v -l 6 \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
+              split-window  -h \; \
               select-window -t "$MAIN_WINDOW_NAME" \; \
                 select-pane -t 0 \;
 
