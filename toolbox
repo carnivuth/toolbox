@@ -8,7 +8,7 @@ BACKUP_SUFFIX="ct.old"
 OPT_DEPS="tmux fzf ripgrep shellcheck gopls"
 
 # vital dependencies
-DEPS="stow gawk vim git $OPT_DEPS"
+DEPS="stow gawk vim nvim git $OPT_DEPS"
 
 # ROOT FUNCTIONS
 install_deps(){
@@ -68,6 +68,7 @@ function install_toolbox(){
 function uninstall_toolbox(){
   echo "removing config with stow"
   rm -rf "$HOME/.vim/plugged"
+  rm -rf "$HOME/.local/share/nvim"
   stow --target="$HOME" -D vim
   stow --target="$HOME" -D etc
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
