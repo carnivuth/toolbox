@@ -17,7 +17,7 @@ Vagrant.configure('2') do |config|
 
   # provisioning
   $script = <<-'SCRIPT'
-  sudo apt update
+  sudo apt-get update
   cd ~/toolbox
   ./toolbox
   SCRIPT
