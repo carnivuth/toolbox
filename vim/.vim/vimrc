@@ -65,7 +65,7 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set showcmd
 
 " Show the mode you are on the last line.
-set showmode
+set noshowmode
 
 " enable status line
 set laststatus=2
