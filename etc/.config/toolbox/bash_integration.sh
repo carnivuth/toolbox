@@ -19,6 +19,7 @@ alias nw='notify.sh -t work'
 alias nr='notify.sh -t random'
 
 #ls aliases
+alias l='ls --color=auto -lart'
 alias ls='ls --color=auto '
 alias ll='ls --color=auto -pl'
 alias la='ls --color=auto -pa'
