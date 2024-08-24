@@ -32,3 +32,7 @@ alias gg='lazygit'
 
 # clear
 alias c='clear'
+
+# vim and nvim
+alias v='vim'
+alias nv='nvim'

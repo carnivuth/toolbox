@@ -15,3 +15,8 @@ vim.o.wildmenu=true
 vim.o.wildmode="list:longest"
 vim.opt.wildignore={'*.docx','*.jpg','*.png','*.gif','*.pdf','*.pyc','*.exe','*.flv','*.img','*.xlsx'}
 vim.o.showcmd=true
+
+
+-- lsp configurations
+
+require("lsp.lua")

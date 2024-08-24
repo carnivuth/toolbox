@@ -8,7 +8,7 @@ BACKUP_SUFFIX="ct.old"
 OPT_DEPS="tmux fzf ripgrep shellcheck gopls"
 
 # vital dependencies
-DEPS="stow gawk vim nvim git $OPT_DEPS"
+DEPS="stow gawk vim git $OPT_DEPS"
 
 # ROOT FUNCTIONS
 install_deps(){
@@ -38,23 +38,27 @@ uninstall_deps(){
 # USER FUNCTIONS
 function install_toolbox(){
   # create directories for stow, if they don't exist
-  mkdir -p "$HOME/.config"
+  mkdir -p "$HOME/.config/tmux"
+  mkdir -p "$HOME/.config/toolbox"
+  mkdir -p "$HOME/.config/nvim"
   mkdir -p "$HOME/.local/bin"
   mkdir -p "$VIM_FOLDER"
   # stow binaries and configurations
-  stow --target="$HOME" etc
-  stow --target="$HOME" bin
+  stow --target="$HOME/.config/tmux" tmux 
+  stow --target="$HOME/.config/toolbox" toolbox 
+  stow --target="$HOME/.config/nvim" nvim
+  stow --target="$HOME/.local/bin" bin
   # backup .vimrc than if stow fails backup .vim folder and try again
   if [[ -f "$VIMRC" ]]; then
     echo "backup vimrc file"
     mv "$VIMRC" "$VIMRC.$BACKUP_SUFFIX"
   fi
-  if ! stow --target="$HOME" vim; then
+  if ! stow --target="$VIM_FOLDER" vim; then
     if [[ -d "$VIM_FOLDER" ]]; then
       echo "backup .vim directory"
       mv "$VIM_FOLDER" "$VIM_FOLDER.$BACKUP_SUFFIX"
     fi
-    stow --target="$HOME" vim
+    stow --target="$VIM_FOLDER" vim
   fi
 
   # editing PATH variable and sourcing shell integration
@@ -69,8 +73,11 @@ function uninstall_toolbox(){
   echo "removing config with stow"
   rm -rf "$HOME/.vim/plugged"
   rm -rf "$HOME/.local/share/nvim"
-  stow --target="$HOME" -D vim
-  stow --target="$HOME" -D etc
+  stow --target="$VIM_FOLDER" -D vim
+  stow --target="$HOME/.config/tmux" -D tmux 
+  stow --target="$HOME/.config/toolbox" -D toolbox 
+  stow --target="$HOME/.config/nvim" -D nvim
+  stow --target="$HOME/.local/bin" -D bin
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
     echo "restoring old vimrc"
     mv "$VIMRC.$BACKUP_SUFFIX" "$VIMRC"
