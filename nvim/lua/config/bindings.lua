@@ -13,7 +13,7 @@ vim.keymap.set('n', '<Leader>w', '<cmd>write<cr>')
 vim.keymap.set('n', '<Leader>c', '<cmd>bw<cr>')
 vim.keymap.set('n', '<Leader>j', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<Leader>k', '<cmd>bprevious<cr>')
-vim.keymap.set('n', '<Leader>gg', ':! lazygit<cr>')
+vim.keymap.set('n', '<Leader>gg', '<cmd>Neogit<cr>')
 
 -- ALE bindings
 --nnoremap <Leader>l :ALE
