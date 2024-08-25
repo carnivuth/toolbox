@@ -4,5 +4,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
-  command = [[normal ggVG=]],
+  command = [[normal mfggVG=`f]],
 })
