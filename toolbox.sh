@@ -67,11 +67,14 @@ function install_toolbox(){
     echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
   fi
   vim +PlugInstall +qall
+  # clone tpm repo
+  git clone "https://github.com/tmux-plugins/tpm" "~/.config/tmux/plugins/tpm"
 }
 
 function uninstall_toolbox(){
   echo "removing config with stow"
   rm -rf "$HOME/.vim/plugged"
+  rm -rf "$HOME/.config/tmux/plugins"
   rm -rf "$HOME/.local/share/nvim"
   stow --target="$VIM_FOLDER" -D vim
   stow --target="$HOME/.config/tmux" -D tmux
