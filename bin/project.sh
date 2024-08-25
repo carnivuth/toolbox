@@ -76,7 +76,7 @@ open_project(){
           else
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
-            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" \; \
+            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" \;  set -w remain-on-exit on \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
               split-window  -h \; \
               select-window -t "$EDITOR" \; \
