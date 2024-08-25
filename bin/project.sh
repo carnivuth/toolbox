@@ -64,9 +64,6 @@ open_project(){
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
   if [[ "$1" == '.' ]]; then PROJECT_NAME="$(basename "$(pwd)")";fi
 
-  # check if a todo file exists
-  if [[ -f "$1/todo.md" ]]; then TODO_FILE="todo.md"; fi
-  if [[ "$1" == '' ]] && [[ -f "todo.md" ]]; then TODO_FILE="todo.md"; fi
 
   SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
@@ -79,7 +76,7 @@ open_project(){
           else
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
-            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" $TODO_FILE \; \
+            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
               split-window  -h \; \
               select-window -t "$EDITOR" \; \
