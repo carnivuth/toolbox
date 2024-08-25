@@ -12,12 +12,16 @@ Plug 'junegunn/fzf'
 Plug 'vim-airline/vim-airline'
 " ale plugin
 Plug 'dense-analysis/ale'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 call plug#end()
 
 " OPTIONS
 
+" option for catpuchin
+set termguicolors
+
 " set colorscheme
-colorscheme slate
+colorscheme catppuccin_mocha
 
 " set relative line numbers
 set relativenumber
