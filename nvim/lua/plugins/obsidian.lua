@@ -1,20 +1,18 @@
 return {
   "epwalsh/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
+  version = "*",
   lazy = true,
   ft = "markdown",
   dependencies = {
     -- Required.
     "nvim-lua/plenary.nvim",
+    -- completion
     "hrsh7th/nvim-cmp",
 
   },
   main= "obsidian",
-   attachments = {
-    -- The default folder to place images in via `:ObsidianPasteImg`.
-    -- If this is a relative path it will be interpreted as relative to the vault root.
-    -- You can always override this per image by passing a full path to the command instead of just a filename.
-    img_folder = "assets/imgs",
+  attachments = {
+    img_folder = "assets",
   },
   opts = {
     workspaces = {
@@ -25,11 +23,18 @@ return {
     },
     notes_subdir = "pages",
     completion = {
-      -- Set to false to disable completion.
       nvim_cmp = true,
-      -- Trigger completion at 2 chars.
-      min_chars = 2,
+      min_chars = 1,
     },
+    picker = {
+    name = "telescope.nvim",
+    mappings = {
+      -- Create a new note from your query.
+      new = "<C-x>",
+      -- Insert a link to the selected note.
+      insert_link = "<C-l>",
+    },
+  },
 
   },
 }

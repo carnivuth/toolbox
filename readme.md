@@ -15,14 +15,14 @@ clone repository and run installation script
 ```bash
 git clone https://github.com/carnivuth/toolbox
 cd toolbox
-./toolbox
+./toolbox.sh
 ```
 
 to uninstall run:
 
 ```bash
 cd toolbox
-./toolbox uninstall
+./toolbox.sh uninstall
 ```
 
 ## FEATURES
