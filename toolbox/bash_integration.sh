@@ -36,3 +36,6 @@ alias c='clear'
 # vim and nvim
 alias v='vim'
 alias nv='nvim'
+
+#ssh alias
+alias ssh='TERM=xterm-256color ssh'

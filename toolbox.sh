@@ -5,7 +5,7 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # dependencies that can be removed after uninstall
-OPT_DEPS="tmux fzf ripgrep shellcheck gopls"
+OPT_DEPS="npm neovim tmux fzf ripgrep"
 
 # vital dependencies
 DEPS="stow gawk vim git $OPT_DEPS"
@@ -44,8 +44,8 @@ function install_toolbox(){
   mkdir -p "$HOME/.local/bin"
   mkdir -p "$VIM_FOLDER"
   # stow binaries and configurations
-  stow --target="$HOME/.config/tmux" tmux 
-  stow --target="$HOME/.config/toolbox" toolbox 
+  stow --target="$HOME/.config/tmux" tmux
+  stow --target="$HOME/.config/toolbox" toolbox
   stow --target="$HOME/.config/nvim" nvim
   stow --target="$HOME/.local/bin" bin
   # backup .vimrc than if stow fails backup .vim folder and try again
@@ -74,8 +74,8 @@ function uninstall_toolbox(){
   rm -rf "$HOME/.vim/plugged"
   rm -rf "$HOME/.local/share/nvim"
   stow --target="$VIM_FOLDER" -D vim
-  stow --target="$HOME/.config/tmux" -D tmux 
-  stow --target="$HOME/.config/toolbox" -D toolbox 
+  stow --target="$HOME/.config/tmux" -D tmux
+  stow --target="$HOME/.config/toolbox" -D toolbox
   stow --target="$HOME/.config/nvim" -D nvim
   stow --target="$HOME/.local/bin" -D bin
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then

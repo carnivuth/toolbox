@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
   $script = <<-'SCRIPT'
   sudo apt-get update
   cd ~/toolbox
-  ./toolbox
+  ./toolbox.sh
   SCRIPT
   config.vm.provision "shell", inline: $script, privileged: false
 end
