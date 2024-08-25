@@ -2,18 +2,16 @@
 
 DEPS='tmux vim'
 SECOND_WINDOW_NAME="worker"
-MAIN_WINDOW_NAME="vim"
 
 EDITOR=nvim
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   EDITOR=vim
-# many other tests omitted
+  # many other tests omitted
 else
   case $(ps -o comm= -p "$PPID") in
     sshd|*/sshd) EDITOR=vim;;
   esac
 fi
-
 
 help(){
   echo "Usage $0 [project folder]"
@@ -76,15 +74,15 @@ open_project(){
 
       # if session already exists attach to the session
       tmux attach-session -t "$PROJECT_NAME"\; \
-        select-window -t "$MAIN_WINDOW_NAME" \; \
+        select-window -t "$EDITOR" \; \
           select-pane -t 0 \;
           else
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
-            tmux new  -n "$MAIN_WINDOW_NAME" -s "$PROJECT_NAME" "$EDITOR" $TODO_FILE \; \
+            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" $TODO_FILE \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
               split-window  -h \; \
-              select-window -t "$MAIN_WINDOW_NAME" \; \
+              select-window -t "$EDITOR" \; \
                 select-pane -t 0 \;
 
   fi
