@@ -66,9 +66,12 @@ function install_toolbox(){
     echo "adding toolbox bash integration"
     echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
   fi
-  vim +PlugInstall +qall
+  #vim +PlugInstall +qall
+
   # clone tpm repo
-  git clone "https://github.com/tmux-plugins/tpm" "~/.config/tmux/plugins/tpm"
+  if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
+    git clone "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
+  fi
 }
 
 function uninstall_toolbox(){
