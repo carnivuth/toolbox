@@ -1,6 +1,9 @@
 #!/bin/bash
 source /etc/os-release
 
+if [[ "$(whoami)" != 'root' ]];then
+  SUDO="sudo"
+fi
 install_packages(){
   case $ID in
     "arch")
@@ -8,12 +11,12 @@ install_packages(){
       if [[ "$AUR" == "TRUE" ]] && [[ -x "$( which yay )" ]]; then
         yay -Slq | fzf  --preview "yay -Si {1}"  | xargs -ro yay -S
       else
-        pacman -Slq | fzf  --preview "pacman -Si {1}"  | xargs -ro sudo pacman -S
+        pacman -Slq | fzf  --preview "pacman -Si {1}"  | xargs -ro $SUDO pacman -S
       fi
       ;;
     "debian"|"ubuntu")
       # acky way to do the same as arch but with apt
-      apt-cache -n search '.*' | awk -F ' - ' '{print $1}' | fzf  --preview "apt-cache show  {1}"  | xargs -ro sudo apt-get install
+      apt-cache -n search '.*' | awk -F ' - ' '{print $1}' | fzf  --preview "apt-cache show  {1}"  | xargs -ro $SUDO apt-get install
       ;;
   esac
 }
@@ -25,11 +28,11 @@ remove_packages(){
       if [[ "$AUR" == "TRUE" ]] && [[ -x "$( which yay )" ]]; then
         yay -Qq | fzf  --preview "yay -Qi {1}"  | xargs -ro yay -Rns
       else
-        pacman -Qq | fzf  --preview "pacman -Qi {1}"  | xargs -ro sudo pacman -Rns
+        pacman -Qq | fzf  --preview "pacman -Qi {1}"  | xargs -ro $SUDO pacman -Rns
       fi
       ;;
     "debian"|"ubuntu")
-      dpkg -l | grep '^ii' | awk -F ' ' '{print $2}' | fzf  --preview "apt-cache show  {1}"  | xargs -ro sudo apt-get remove
+      dpkg -l | grep '^ii' | awk -F ' ' '{print $2}' | fzf  --preview "apt-cache show  {1}"  | xargs -ro $SUDO apt-get remove
       ;;
   esac
 }
