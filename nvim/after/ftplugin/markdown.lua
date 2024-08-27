@@ -1,1 +1,1 @@
-vim.opt_local.conceallevel = 5
+vim.opt_local.conceallevel = 2
