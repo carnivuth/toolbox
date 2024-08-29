@@ -27,7 +27,7 @@ return {
       },
       twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
       gitsigns = { enabled = false }, -- disables git signs
-      tmux = { enabled = false }, -- disables the tmux statusline
+      tmux = { enabled = true}, -- disables the tmux statusline
       alacritty = {
         enabled = true,
         font = "14", -- font size
