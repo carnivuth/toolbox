@@ -33,8 +33,9 @@ cd toolbox
 toolbox can be installed also with docker in a specific environment and mount the project directory folder
 
 ```bash
-TODO
+docker run  -u $UID:$UID -v ~/project_to_mount/:/home/toolbox/project_to_mount -it toolbox bash
 ```
+
 ## FEATURES
 
 The toolbox consists on a minimal vim configuration and some usefull bash scripts
