@@ -10,7 +10,10 @@ The main objective is to have a simple, quick and efficient mini dev-environment
 
 ## INSTALLATION
 
-clone repository and run installation script
+### NATIVE INSTALLATION
+
+toolbox can be installed in a fully setup configuration with neovim or in a minimal setup with vim (bot of them with some similar functionalities),
+if toolbox is installed in a remote ssh environment the minimal setup is installed
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
@@ -25,6 +28,13 @@ cd toolbox
 ./toolbox.sh uninstall
 ```
 
+### DOCKER ENVIRONMENT
+
+toolbox can be installed also with docker in a specific environment and mount the project directory folder
+
+```bash
+TODO
+```
 ## FEATURES
 
 The toolbox consists on a minimal vim configuration and some usefull bash scripts

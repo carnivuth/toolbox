@@ -6,19 +6,28 @@
 
 " PLUGINS
 call plug#begin()
+
 " fzf plugin
 Plug 'junegunn/fzf'
+
 " statusline
 Plug 'vim-airline/vim-airline'
 Plug 'bling/vim-bufferline'
+
 " ale plugin
 Plug 'dense-analysis/ale'
+
+" catppuccin
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
+" git
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " OPTIONS
 
-" option for catpuchin
+" option for catppuccin
 set termguicolors
 
 " set colorscheme
@@ -151,14 +160,7 @@ nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 
 " git bindings
-noremap <Leader>G :! git<Space>
-" lazygit shortcut
-if  ! empty(glob('/usr/bin/lazygit'))
-  nmap <Leader>gg :!lazygit<CR>
-else
-  " if lazygit is absent, handy solution
-  nmap <Leader>gg :! lz_git.sh<CR>
-endif
+noremap <Leader>gg :G<CR>
 
 " keep cursor on center when scrolling files
 nnoremap n nzz

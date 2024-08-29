@@ -4,7 +4,7 @@ FROM archlinux:latest
 ENV TERM=xterm-256color
 
 # install deps
-RUN pacman -Sy curl starship openssh which gcc npm go neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
+RUN pacman -Sy python go curl starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
 
 # user setup for fixuid
 RUN groupadd toolbox -g 2000
@@ -19,6 +19,9 @@ RUN printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
 
 WORKDIR /home/toolbox/toolbox
 COPY . .
+RUN chown -R $USER:$GROUP /home/toolbox/toolbox
+
+USER $USER:$GROUP
 
 RUN mkdir -p "/home/toolbox/.config/tmux"
 RUN mkdir -p "/home/toolbox/.config/toolbox"
@@ -34,7 +37,6 @@ RUN stow --target="/home/toolbox/.local/bin" bin
 RUN stow --target="/home/toolbox/.config" starship
 RUN git clone "https://github.com/tmux-plugins/tpm" "/home/toolbox/.config/tmux/plugins/tpm"
 RUN echo 'eval "$(starship init bash)"' >> "/home/toolbox/.bashrc"
-RUN echo 'source /home/toolbox/.config/toolbox/bash_integration.sh' >> "/home/toolbox/.bashrc"
+RUN echo 'source /home/toolbox/.config/toolbox/bash_integration_full.sh' >> "/home/toolbox/.bashrc"
 WORKDIR /home/toolbox
-USER toolbox:toolbox
 ENTRYPOINT ["fixuid"]

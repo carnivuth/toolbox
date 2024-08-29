@@ -28,7 +28,6 @@ alias lla='ls --color=auto -pla'
 # git
 alias gst='git status'
 alias gd='git diff'
-alias gg='lazygit'
 
 # clear
 alias c='clear'

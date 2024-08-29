@@ -4,33 +4,45 @@ VIMRC="$HOME/.vimrc"
 VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
-# dependencies that can be removed after uninstall
-OPT_DEPS="npm neovim tmux fzf ripgrep"
+# dependencies for full environment with neovim setup
+FULL_ENV_DEPS="go git stow npm neovim tmux fzf ripgrep starship"
 
-# vital dependencies
-DEPS="stow gawk vim git $OPT_DEPS"
+# dependencies for minimal environment with vim setup
+MINIMAL_ENV_DEPS="git stow tmux fzf vim"
+
+function is_ssh_session(){
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    return 0
+    # many other tests omitted
+  else
+    case $(ps -o comm= -p "$PPID") in
+      sshd|*/sshd) return 0;;
+    esac
+  fi
+  return 1
+}
 
 # ROOT FUNCTIONS
 install_deps(){
-  [[ "$(whoami)" != "root" ]] && echo "run $0 as root" && exit 1
+  if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
   case $ID in
     "arch")
-      pacman -S $DEPS --noconfirm
+      "$SUDO" pacman -S "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
-      apt install $DEPS -y
+      "$SUDO" apt-get install "$@" -y
       ;;
   esac
 }
 
 uninstall_deps(){
-  [[ "$(whoami)" != "root" ]] && echo "run $0 as root" && exit 1
+  if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
   case $ID in
     "arch")
-      pacman -Rns $OPT_DEPS --noconfirm
+      "$SUDO" pacman -Rns "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
-      apt remove $OPT_DEPS -y
+      "$SUDO" apt-get remove "$@" -y
       ;;
   esac
 }
@@ -47,6 +59,7 @@ function install_toolbox(){
   stow --target="$HOME/.config/tmux" tmux
   stow --target="$HOME/.config/toolbox" toolbox
   stow --target="$HOME/.config/nvim" nvim
+  stow --target="$HOME/.config" starship
   stow --target="$HOME/.local/bin" bin
   # backup .vimrc than if stow fails backup .vim folder and try again
   if [[ -f "$VIMRC" ]]; then
@@ -61,17 +74,23 @@ function install_toolbox(){
     stow --target="$VIM_FOLDER" vim
   fi
 
-  # editing PATH variable and sourcing shell integration
-  if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration.sh' "$HOME/.bashrc" )" == "" ]]; then
-    echo "adding toolbox bash integration"
-    echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
-  fi
-  #vim +PlugInstall +qall
-
   # clone tpm repo
   if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
     git clone "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
   fi
+
+  # sourcing shell integration
+  echo "adding toolbox bash integration"
+  if [[ "$1" == "minimal" ]]; then
+    if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration_minimal.sh' "$HOME/.bashrc" )" == "" ]]; then
+      echo 'source $HOME/.config/toolbox/bash_integration_minimal.sh' >> "$HOME/.bashrc"
+    fi
+  elif [[ "$1" == "full" ]]; then
+    if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration_full.sh' "$HOME/.bashrc" )" == "" ]]; then
+      echo 'source $HOME/.config/toolbox/bash_integration_full.sh' >> "$HOME/.bashrc"
+    fi
+  fi
+
 }
 
 function uninstall_toolbox(){
@@ -79,11 +98,13 @@ function uninstall_toolbox(){
   rm -rf "$HOME/.vim/plugged"
   rm -rf "$HOME/.config/tmux/plugins"
   rm -rf "$HOME/.local/share/nvim"
-  stow --target="$VIM_FOLDER" -D vim
-  stow --target="$HOME/.config/tmux" -D tmux
-  stow --target="$HOME/.config/toolbox" -D toolbox
-  stow --target="$HOME/.config/nvim" -D nvim
-  stow --target="$HOME/.local/bin" -D bin
+  if [[ -d "$VIM_FOLDER" ]];then stow --target="$VIM_FOLDER" -D vim; fi
+  if [[ -d "$HOME/.config/tmux" ]];then stow --target="$HOME/.config/tmux" -D tmux; fi
+  if [[ -d "$HOME/.config/toolbox" ]];then stow --target="$HOME/.config/toolbox" -D toolbox; fi
+  if [[ -d "$HOME/.config/nvim" ]];then stow --target="$HOME/.config/nvim" -D nvim; fi
+  if [[ -d "$HOME/.config" ]];then stow --target="$HOME/.config" -D starship; fi
+  if [[ -d "$HOME/.local/bin" ]];then stow --target="$HOME/.local/bin" -D bin; fi
+
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
     echo "restoring old vimrc"
     mv "$VIMRC.$BACKUP_SUFFIX" "$VIMRC"
@@ -93,45 +114,25 @@ function uninstall_toolbox(){
     mv "$VIM_FOLDER.$BACKUP_SUFFIX" "$VIM_FOLDER";
   fi
   echo "removing lines from bashrc"
-  sed '/source \$HOME\/\.config\/toolbox\/bash_integration.sh/d' -i "$HOME/.bashrc"
+  sed '/source \$HOME\/\.config\/toolbox\/bash_integration.*/d' -i "$HOME/.bashrc"
 }
 
 
 COMMAND="$1"
 case "$COMMAND" in
-  "install_toolbox")
-    install_toolbox
-    ;;
-  "uninstall_toolbox")
-    uninstall_toolbox
-    ;;
-  "install_deps")
-    install_deps
-    ;;
-  "uninstall_deps")
-    uninstall_deps
-    ;;
   "help"|"--help")
-    echo "usage $0 [install_toolbox|uninstall_toolbox||install_deps|uninstall_deps]"
+    echo "usage $0 [install_toolbox|uninstall_toolbox]"
     echo "to install from scratch run:"
     echo "$0"
     ;;
   'uninstall')
-    # if not running as root call deps nstallation with sudo
-    if [[ "$(whoami)" != "root" ]]; then
-      echo "installing deps and toolbox"
-      sudo "$0" uninstall_deps && uninstall_toolbox
-    else
-      "$0" uninstall_deps && uninstall_toolbox
-    fi
+    uninstall_toolbox
     ;;
   *)
-    # if not running as root call deps installation with sudo
-    if [[ "$(whoami)" != "root" ]]; then
-      echo "installing deps and toolbox"
-      sudo "$0" install_deps && install_toolbox
+    if is_ssh_session; then
+      install_deps $MINIMAL_ENV_DEPS && uninstall_toolbox && install_toolbox minimal
     else
-      "$0" install_deps && install_toolbox
+      install_deps $FULL_ENV_DEPS && uninstall_toolbox && install_toolbox full
     fi
     ;;
 esac

@@ -21,5 +21,3 @@ the installation in remote environment should preserve and restore the existing 
 - add telescope functionality to cut paste inside file (eg `: r! cat /path/to/file`)
 
 ## TB_HAWKEYE
-
-

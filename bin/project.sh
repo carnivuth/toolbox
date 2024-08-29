@@ -1,17 +1,5 @@
 #!/bin/bash
-
-DEPS='tmux vim'
 SECOND_WINDOW_NAME="worker"
-
-EDITOR=nvim
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-  EDITOR=vim
-  # many other tests omitted
-else
-  case $(ps -o comm= -p "$PPID") in
-    sshd|*/sshd) EDITOR=vim;;
-  esac
-fi
 
 help(){
   echo "Usage $0 [project folder]"
@@ -20,13 +8,19 @@ help(){
   echo "kill tmux session with this name"
 }
 
+function is_ssh_session(){
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    return 0
+    # many other tests omitted
+  else
+    case $(ps -o comm= -p "$PPID") in
+      sshd|*/sshd) return 0;;
+    esac
+  fi
+  return 1
+}
+
 checks(){
-
-  # check if deps are installed
-
-  for dep in $DEPS; do
-    [ ! -x "$(which "$dep")" ] && echo "$dep" binary not found  && return 1
-  done
 
   # avoid nested sessions
   [ -n "$TMUX" ] && echo already in a tmux session && return 1
@@ -43,9 +37,7 @@ kill_project(){
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
 
-  SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
-
-  if [[ "$SESSION_STATUS" != '' ]]; then
+  if tmux has-session -t "$PROJECT_NAME" > /dev/null 2>&1 ; then
     # kill if session exists
     tmux kill-session -t "$PROJECT_NAME"
     echo "session $PROJECT_NAME killed"
@@ -65,9 +57,8 @@ open_project(){
   if [[ "$1" == '.' ]]; then PROJECT_NAME="$(basename "$(pwd)")";fi
 
 
-  SESSION_STATUS="$(tmux ls | grep "^$PROJECT_NAME:")"
 
-  if [[ "$SESSION_STATUS" != '' ]]; then
+  if tmux has-session -t "$PROJECT_NAME" > /dev/null 2>&1 ; then
 
       # if session already exists attach to the session
       tmux attach-session -t "$PROJECT_NAME"\; \
@@ -84,6 +75,8 @@ open_project(){
 
   fi
 }
+
+if is_ssh_session; then EDITOR=vim; else EDITOR=nvim; fi
 
 case $1 in
   -k)
