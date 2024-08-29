@@ -15,6 +15,7 @@ return {
           'buffers',
         }
       },
+      lualine_c = {},
     }
   }
 }

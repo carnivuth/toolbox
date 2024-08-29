@@ -10,6 +10,7 @@ call plug#begin()
 Plug 'junegunn/fzf'
 " statusline
 Plug 'vim-airline/vim-airline'
+Plug 'bling/vim-bufferline'
 " ale plugin
 Plug 'dense-analysis/ale'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
@@ -187,3 +188,11 @@ if ! empty(glob('/usr/bin/wl-copy'))
   vnoremap <silent>Y :w !wl-copy<CR><CR>
   nnoremap <silent>Y :call system("wl-copy", @")<CR>
 endif
+
+
+" vim airline configuration
+
+ function! AirlineInit()
+   let g:airline_section_c =''
+ endfunction
+ autocmd VimEnter * call AirlineInit()
