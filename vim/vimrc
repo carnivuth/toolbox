@@ -85,7 +85,7 @@ set noshowmode
 set laststatus=2
 
 " set fzf default options
-let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
+"let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
 " enable default ALE completition
 let g:ale_completion_enabled = 1
