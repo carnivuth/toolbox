@@ -10,7 +10,8 @@ FULL_ENV_DEPS="go git stow npm neovim tmux fzf ripgrep starship"
 # dependencies for minimal environment with vim setup
 MINIMAL_ENV_DEPS="git stow tmux fzf vim"
 
-function is_ssh_session(){
+function is_ssh_session_or_root(){
+  if [[ "$(whoami)" == "root" ]]; then return 0; fi
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     return 0
     # many other tests omitted
@@ -54,6 +55,7 @@ function install_toolbox(){
   mkdir -p "$HOME/.config/toolbox"
   mkdir -p "$HOME/.config/nvim"
   mkdir -p "$HOME/.local/bin"
+  mkdir -p "$HOME/.local/lib"
   mkdir -p "$VIM_FOLDER"
   # stow binaries and configurations
   stow --target="$HOME/.config/tmux" tmux
@@ -61,6 +63,7 @@ function install_toolbox(){
   stow --target="$HOME/.config/nvim" nvim
   stow --target="$HOME/.config" starship
   stow --target="$HOME/.local/bin" bin
+  stow --target="$HOME/.local/lib" lib
   # backup .vimrc than if stow fails backup .vim folder and try again
   if [[ -f "$VIMRC" ]]; then
     echo "backup vimrc file"
@@ -104,6 +107,7 @@ function uninstall_toolbox(){
   if [[ -d "$HOME/.config/nvim" ]];then stow --target="$HOME/.config/nvim" -D nvim; fi
   if [[ -d "$HOME/.config" ]];then stow --target="$HOME/.config" -D starship; fi
   if [[ -d "$HOME/.local/bin" ]];then stow --target="$HOME/.local/bin" -D bin; fi
+  if [[ -d "$HOME/.local/lib" ]];then stow --target="$HOME/.local/lib" -D lib; fi
 
   if [[ -f "$VIMRC.$BACKUP_SUFFIX" ]]; then
     echo "restoring old vimrc"
@@ -129,7 +133,7 @@ case "$COMMAND" in
     uninstall_toolbox
     ;;
   *)
-    if is_ssh_session; then
+    if is_ssh_session_or_root; then
       install_deps $MINIMAL_ENV_DEPS && uninstall_toolbox && install_toolbox minimal
     else
       install_deps $FULL_ENV_DEPS && uninstall_toolbox && install_toolbox full

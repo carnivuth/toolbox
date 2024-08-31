@@ -28,12 +28,14 @@ RUN mkdir -p "/home/toolbox/.config/toolbox"
 RUN mkdir -p "/home/toolbox/.config/nvim"
 RUN mkdir -p "/home/toolbox/.config/vim"
 RUN mkdir -p "/home/toolbox/.local/bin"
+RUN mkdir -p "/home/toolbox/.local/lib"
 
 RUN stow --target="/home/toolbox/.config/tmux" tmux
 RUN stow --target="/home/toolbox/.config/toolbox" toolbox
 RUN stow --target="/home/toolbox/.config/nvim" nvim
 RUN stow --target="/home/toolbox/.config/vim" vim
 RUN stow --target="/home/toolbox/.local/bin" bin
+RUN stow --target="/home/toolbox/.local/lib" lib
 RUN stow --target="/home/toolbox/.config" starship
 RUN git clone "https://github.com/tmux-plugins/tpm" "/home/toolbox/.config/tmux/plugins/tpm"
 RUN echo 'eval "$(starship init bash)"' >> "/home/toolbox/.bashrc"

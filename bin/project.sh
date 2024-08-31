@@ -1,4 +1,5 @@
 #!/bin/bash
+source "$HOME/.local/lib/is_ssh_session_or_root.sh"
 SECOND_WINDOW_NAME="worker"
 
 help(){
@@ -6,18 +7,6 @@ help(){
   echo "open default tmux configuration in the given folder"
   echo "Usage $0 -k [project folder]"
   echo "kill tmux session with this name"
-}
-
-function is_ssh_session(){
-  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    return 0
-    # many other tests omitted
-  else
-    case $(ps -o comm= -p "$PPID") in
-      sshd|*/sshd) return 0;;
-    esac
-  fi
-  return 1
 }
 
 checks(){
@@ -76,7 +65,7 @@ open_project(){
   fi
 }
 
-if is_ssh_session; then EDITOR=vim; else EDITOR=nvim; fi
+if is_ssh_session_or_root; then EDITOR=vim; else EDITOR=nvim; fi
 
 case $1 in
   -k)
