@@ -18,7 +18,7 @@ return {
     workspaces = {
       {
         name = "computer_vision",
-        path = "~/computer_vision",
+        path = "~/vaults/computer_vision",
       },
     },
     notes_subdir = "pages",
