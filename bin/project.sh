@@ -47,6 +47,7 @@ open_project(){
 
 
 
+  export TERM=xterm-256color
   if tmux has-session -t "$PROJECT_NAME" > /dev/null 2>&1 ; then
 
       # if session already exists attach to the session
@@ -56,7 +57,7 @@ open_project(){
           else
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
-            tmux new  -n "$EDITOR" -s "$PROJECT_NAME" "$EDITOR" \;  set -w remain-on-exit on \; \
+            tmux new  -n  "$EDITOR" -s "$PROJECT_NAME"  "$EDITOR" \;  set -w remain-on-exit on \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
               split-window  -h \; \
               select-window -t "$EDITOR" \; \

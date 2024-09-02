@@ -31,7 +31,7 @@ install_deps(){
       "$SUDO" pacman -S "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
-      "$SUDO" apt-get install "$@" -y
+      $SUDO apt-get install "$@" -y
       ;;
   esac
 }
@@ -43,7 +43,7 @@ uninstall_deps(){
       "$SUDO" pacman -Rns "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
-      "$SUDO" apt-get remove "$@" -y
+      $SUDO apt-get remove "$@" -y
       ;;
   esac
 }
