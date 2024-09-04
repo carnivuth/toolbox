@@ -2,11 +2,11 @@
 
 ## DEPLOYMENT REFACTOR
 
-Rewark deployment in order to implement 3 principal deployment scenarios
+Rework deployment in order to implement 3 principal deployment scenarios
 
 - local installation with complete dev env using local environment configuration
 - remote minimal setup (using vim instead of neovim) for simple configs and capable of operate in debian environments (original idea)
-- docker container deployment, for quick and easy neovim configuration without reling in remote environment packets or installation
+- docker container deployment, for quick and easy neovim configuration without reling in remote environment packets or configurations
 
 installation for the first 2 cases should uninstall precedent configs, to improve update procedures
 
