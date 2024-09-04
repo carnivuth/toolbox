@@ -14,6 +14,7 @@ alias sr='store.sh remove'
 # tmux aliases
 alias j='project.sh'
 alias tls='tmux ls'
+alias tks='tmux kill-server'
 alias tk='tmux kill-session -t'
 alias tm='tmux new-session -A -s $HOSTNAME'
 
