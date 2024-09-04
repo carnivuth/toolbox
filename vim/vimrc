@@ -197,4 +197,5 @@ endif
  function! AirlineInit()
    let g:airline_section_c =''
  endfunction
+ autocmd VimEnter * :PlugInstall
  autocmd VimEnter * call AirlineInit()
