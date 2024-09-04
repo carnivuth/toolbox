@@ -4,13 +4,14 @@ FROM archlinux:latest
 ENV TERM=xterm-256color
 
 # install deps
-RUN pacman -Sy python go curl starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
+RUN pacman -Sy sudo python go curl starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
 
 # user setup for fixuid
 RUN groupadd toolbox -g 2000
 RUN useradd -m toolbox -u 2000 -g 2000
 ENV USER=toolbox
 ENV GROUP=toolbox
+RUN echo  "$USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.6.0/fixuid-0.6.0-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf -
 RUN chown root:root /usr/local/bin/fixuid
 RUN chmod 4755 /usr/local/bin/fixuid
