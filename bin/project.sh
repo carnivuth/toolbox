@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$HOME/.local/lib/is_ssh_session_or_root.sh"
+source "$HOME/.local/lib/minimal_env.sh"
 SECOND_WINDOW_NAME="worker"
 
 help(){
@@ -66,7 +66,7 @@ open_project(){
   fi
 }
 
-if is_ssh_session_or_root; then EDITOR=vim; else EDITOR=nvim; fi
+if minimal_env; then EDITOR=vim; else EDITOR=nvim; fi
 
 case $1 in
   -k)

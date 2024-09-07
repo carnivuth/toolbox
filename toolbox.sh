@@ -10,8 +10,9 @@ FULL_ENV_DEPS="go git stow npm neovim tmux fzf ripgrep starship"
 # dependencies for minimal environment with vim setup
 MINIMAL_ENV_DEPS="git stow tmux fzf vim"
 
-function is_ssh_session_or_root(){
+function minimal_env(){
   if [[ "$(whoami)" == "root" ]]; then return 0; fi
+  if command -v termux-setup-storage; then return 0; fi
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     return 0
     # many other tests omitted
@@ -133,7 +134,7 @@ case "$COMMAND" in
     uninstall_toolbox
     ;;
   *)
-    if is_ssh_session_or_root; then
+    if minimal_env; then
       install_deps $MINIMAL_ENV_DEPS && uninstall_toolbox && install_toolbox minimal
     else
       install_deps $FULL_ENV_DEPS && uninstall_toolbox && install_toolbox full

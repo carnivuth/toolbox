@@ -1,5 +1,6 @@
-function is_ssh_session_or_root(){
+function minimal_env(){
   if [[ "$(whoami)" == "root" ]]; then return 0; fi
+  if command -v termux-setup-storage; then return 0; fi
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     return 0
     # many other tests omitted
