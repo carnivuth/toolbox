@@ -47,7 +47,7 @@ open_project(){
 
 
 
-  export TERM=xterm-256color
+  #export TERM=xterm-256color
   if tmux has-session -t "$PROJECT_NAME" > /dev/null 2>&1 ; then
 
       # if session already exists attach to the session
