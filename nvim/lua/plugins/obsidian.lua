@@ -15,7 +15,24 @@ return {
     img_folder = "assets",
   },
   opts = {
+     ui = { enable = false },
     workspaces = {
+      {
+        name = "sicurezza_informazione",
+        path = "~/vaults/sicurezza_informazione",
+      },
+      {
+        name = "datamining",
+        path = "~/vaults/datamining",
+      },
+      {
+        name = "docs",
+        path = "~/vaults/docs",
+      },
+      {
+        name = "mobile_systems",
+        path = "~/vaults/mobile_systems",
+      },
       {
         name = "computer_vision",
         path = "~/vaults/computer_vision",
