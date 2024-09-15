@@ -23,6 +23,8 @@ vim.keymap.set('i', 'jj', '<ESC>')
 --nnoremap <Leader>lp :ALEPrevious<CR>
 --nnoremap <Leader>lf :ALEFix<CR>
 --nnoremap <Leader>lS :ALEStopAllLSPs<CR>
+-- Obsidian bindings
+vim.keymap.set('n', '<Leader>ol', '<cmd>ObsidianFollowLink<cr>')
 
 -- keep cursor on center when scrolling files
 vim.keymap.set('n', '<Leader>n', 'nzz')
