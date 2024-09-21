@@ -18,6 +18,10 @@ return {
      ui = { enable = false },
     workspaces = {
       {
+        name = "linguaggi_modelli_computazionali",
+        path = "~/vaults/linguaggi_modelli_computazionali",
+      },
+      {
         name = "sicurezza_informazione",
         path = "~/vaults/sicurezza_informazione",
       },
@@ -26,8 +30,8 @@ return {
         path = "~/vaults/datamining",
       },
       {
-        name = "docs",
-        path = "~/vaults/docs",
+        name = "TIL",
+        path = "~/vaults/TIL",
       },
       {
         name = "mobile_systems",
