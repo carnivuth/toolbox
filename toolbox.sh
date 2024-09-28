@@ -31,7 +31,7 @@ install_deps(){
   if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
   case $ID in
     "arch")
-      "$SUDO" pacman -S "$@" --noconfirm
+      $SUDO pacman -S "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
       $SUDO apt-get install "$@" -y
@@ -43,7 +43,7 @@ uninstall_deps(){
   if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
   case $ID in
     "arch")
-      "$SUDO" pacman -Rns "$@" --noconfirm
+      $SUDO pacman -Rns "$@" --noconfirm
       ;;
     "debian"|"ubuntu")
       $SUDO apt-get remove "$@" -y
