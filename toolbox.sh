@@ -5,7 +5,7 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # dependencies for full environment with neovim setup
-FULL_ENV_DEPS="go git stow npm neovim tmux fzf ripgrep starship"
+FULL_ENV_DEPS="gcc go git stow npm neovim tmux fzf ripgrep starship"
 
 # dependencies for minimal environment with vim setup
 MINIMAL_ENV_DEPS="git stow tmux fzf vim"
