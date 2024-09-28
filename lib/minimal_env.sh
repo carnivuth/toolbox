@@ -1,4 +1,6 @@
 function minimal_env(){
+  # always full env in archlinux
+  if [[ "$ID" == "arch" ]]; then return 1; fi
   if [[ "$(whoami)" == "root" ]]; then return 0; fi
   if command -v termux-setup-storage; then return 0; fi
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

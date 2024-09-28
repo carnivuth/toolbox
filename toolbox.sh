@@ -11,6 +11,8 @@ FULL_ENV_DEPS="go git stow npm neovim tmux fzf ripgrep starship"
 MINIMAL_ENV_DEPS="git stow tmux fzf vim"
 
 function minimal_env(){
+  # always full env in archlinux
+  if [[ "$ID" == "arch" ]]; then return 1; fi
   if [[ "$(whoami)" == "root" ]]; then return 0; fi
   if command -v termux-setup-storage; then return 0; fi
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
