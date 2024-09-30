@@ -13,15 +13,11 @@ notify(){
   if [[ "$RESULT" == 0 ]]; then
     curl "$ENDPOINT/$TOPIC" \
       -X POST \
-      -H "Title: SUCCESS $COMMAND" \
-      -H "Filename: $OUTPUT" \
-      -T "$OUTPUT"
+      -H "Title: SUCCESS $COMMAND"
         else
           curl "$ENDPOINT/$TOPIC" \
             -X POST \
-            -H "Title: FAILURE $COMMAND" \
-            -H "Filename: $OUTPUT" \
-            -T "$OUTPUT"
+            -H "Title: FAILURE $COMMAND"
   fi
 }
 
