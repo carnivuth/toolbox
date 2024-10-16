@@ -8,7 +8,7 @@ BACKUP_SUFFIX="ct.old"
 FULL_ENV_DEPS="gcc go git stow npm neovim tmux fzf ripgrep starship"
 
 # dependencies for minimal environment with vim setup
-MINIMAL_ENV_DEPS="git stow tmux fzf vim"
+MINIMAL_ENV_DEPS="ripgrep git stow tmux fzf vim"
 
 function minimal_env(){
   # always full env in archlinux
