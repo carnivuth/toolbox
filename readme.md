@@ -33,8 +33,9 @@ cd toolbox
 toolbox can be installed also with docker in a specific environment and mount the project directory folder
 
 ```bash
-docker run  --pull=always --rm -u $UID:$UID -v ~/project_to_mount/:/home/toolbox/project_to_mount --name toolbox -it carnivuth/toolbox bash
+docker run  --pull=always --rm -u $UID:$UID -v $(pwd):/home/toolbox/project --name toolbox -it carnivuth/toolbox bash
 ```
+
 
 ## FEATURES
 

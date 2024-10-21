@@ -1,7 +1,7 @@
 -- telescope
 vim.keymap.set('n', '<Leader>ff', '<cmd>Telescope find_files <cr>')
 vim.keymap.set('n', '<Leader>fg', '<cmd>Telescope git_files <cr>')
-vim.keymap.set('n', '<Leader>L', '<cmd>Lazy <cr>')
+vim.keymap.set('n', '<Leader>l', '<cmd>Lazy <cr>')
 vim.keymap.set('n', '<Leader>Vr', '<cmd>source $MYVIMRC<cr>')
 vim.keymap.set('n', '<Leader>Ve', '<cmd>e $MYVIMRC<cr>')
 vim.keymap.set('n', '<Leader>z', '<cmd>ZenMode<cr>')
