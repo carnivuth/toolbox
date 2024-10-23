@@ -30,12 +30,13 @@ cd toolbox
 
 ### DOCKER ENVIRONMENT
 
-toolbox can be installed also with docker in a specific environment and mount the project directory folder
+toolbox can be installed also with docker
 
 ```bash
-docker run  --pull=always --rm -u $UID:$UID -v $(pwd):/home/toolbox/project --name toolbox -it carnivuth/toolbox bash
+docker run  --pull=always --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basename "$(pwd)")" --name toolbox -it carnivuth/toolbox bash
 ```
 
+This command will download the docker image and run the container with the current working directory mounted
 
 ## FEATURES
 
