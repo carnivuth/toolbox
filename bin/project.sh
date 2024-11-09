@@ -57,6 +57,8 @@ open_project(){
           else
             # start a new session in the given directory
             if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
+            # source python env if present
+            if [[ -d "env" ]]; then source "env/bin/activate"; fi
             tmux new  -n  "$EDITOR" -s "$PROJECT_NAME"  "$EDITOR" \;  set -w remain-on-exit on \; \
               new-window -n "$SECOND_WINDOW_NAME" \; \
               split-window  -h \; \
