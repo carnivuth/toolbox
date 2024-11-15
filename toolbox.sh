@@ -5,10 +5,10 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # dependencies for full environment with neovim setup
-FULL_ENV_DEPS="gcc go git stow npm neovim tmux fzf ripgrep starship"
+FULL_ENV_DEPS="gcc go git stow npm neovim tmux fzf ripgrep starship curl tar"
 
 # dependencies for minimal environment with vim setup
-MINIMAL_ENV_DEPS="ripgrep git stow tmux fzf vim"
+MINIMAL_ENV_DEPS="ripgrep git stow tmux fzf vim curl tar"
 
 function minimal_env(){
   # always full env in archlinux
@@ -83,6 +83,11 @@ function install_toolbox(){
   # clone tpm repo
   if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
     git clone "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
+  fi
+
+  # install lazygit from github if config is minimal and no distro package can be downloaded
+  if [[ "$1" == "minimal" ]]; then
+    curl  -L "https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_x86_64.tar.gz" | tar -C "$HOME/.local/bin" -zxvf -
   fi
 
   # sourcing shell integration

@@ -1,6 +1,7 @@
 #!/bin/bash
 source "$HOME/.local/lib/minimal_env.sh"
-SECOND_WINDOW_NAME="worker"
+WORKSPACE="worker"
+GIT="lazygit"
 
 help(){
   echo "Usage $0 [project folder]"
@@ -60,8 +61,8 @@ open_project(){
             # source python env if present
             if [[ -d "env" ]]; then source "env/bin/activate"; fi
             tmux new  -n  "$EDITOR" -s "$PROJECT_NAME"  "$EDITOR" \;  set -w remain-on-exit on \; \
-              new-window -n "$SECOND_WINDOW_NAME" \; \
-              split-window  -h \; \
+              new-window -n "$GIT" lazygit \; set -w remain-on-exit on \; \
+              new-window -n "$WORKSPACE" \; \
               select-window -t "$EDITOR" \; \
                 select-pane -t 0 \;
 
