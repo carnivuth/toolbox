@@ -1,7 +1,6 @@
 #!/bin/bash
 export PATH="$HOME/.local/bin:$PATH"
 export FZF_DEFAULT_COMMAND='rg "" -l '
-export FZF_COMPLETION_TRIGGER=''
 export FZF_DEFAULT_OPTS=" \
 --cycle --bind 'tab:toggle-up,btab:toggle-down'"
 
