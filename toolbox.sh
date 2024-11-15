@@ -13,8 +13,14 @@ MINIMAL_ENV_DEPS="ripgrep git stow tmux fzf vim curl tar"
 function minimal_env(){
   # always full env in archlinux
   if [[ "$ID" == "arch" ]]; then return 1; fi
+
+  # check if user is root, in this case minimal setup
   if [[ "$(whoami)" == "root" ]]; then return 0; fi
+
+  # check if installation runs in termux
   if command -v termux-setup-storage; then return 0; fi
+
+  # check if is a tty spawned from the ssh daemon
   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     return 0
     # many other tests omitted
@@ -23,10 +29,12 @@ function minimal_env(){
       sshd|*/sshd) return 0;;
     esac
   fi
+
+  # in other cases install full env
   return 1
 }
 
-# ROOT FUNCTIONS
+# wrapper around different package managers
 install_deps(){
   if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
   case $ID in
