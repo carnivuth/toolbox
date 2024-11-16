@@ -116,6 +116,8 @@ let g:ale_fixers = {
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
+inoremap jj <ESC>
+
 " find and replace
 nnoremap <Leader>s :s/
 nnoremap <Leader>S :%s/
