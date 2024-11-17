@@ -13,6 +13,6 @@ return {
     indent = {
       enable = true
     },
-    ensure_installed = { "python", "dockerfile", "yaml", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "go" },
+    ensure_installed = { "terraform", "python", "dockerfile", "yaml", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "go" },
   }
 }
