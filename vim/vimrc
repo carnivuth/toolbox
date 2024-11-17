@@ -21,7 +21,7 @@ Plug 'dense-analysis/ale'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 " git
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -162,7 +162,7 @@ nnoremap <Leader>lf :ALEFix<CR>
 nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 
 " git bindings
-noremap <Leader>gg :G<CR>
+noremap <Leader>gg :!lazygit<CR>
 
 " keep cursor on center when scrolling files
 nnoremap n nzz
