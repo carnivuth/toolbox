@@ -10,9 +10,4 @@ require("config.keymaps")
 require("config.autocmds")
 
 -- lsp configurations
-require("lsp.lua")
-require("lsp.python")
-require("lsp.go")
-require("lsp.ansible")
-require("lsp.bash")
-require("lsp.terraform")
+require("lsp")
