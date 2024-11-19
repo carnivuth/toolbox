@@ -109,6 +109,12 @@ function install_toolbox(){
       echo 'source $HOME/.config/toolbox/bash_integration_full.sh' >> "$HOME/.bashrc"
     fi
   fi
+  echo "installing vim plugins"
+  vim +PlugInstall +qall
+  if [[ "$1" == "full" ]]; then
+    echo "installing nvim plugins"
+    nvim "+Lazy install" "+qall"
+  fi
 
 }
 

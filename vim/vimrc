@@ -20,8 +20,7 @@ Plug 'dense-analysis/ale'
 " catppuccin
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
-" git
-"Plug 'tpope/vim-fugitive'
+"Plug 'kdheepak/lazygit.nvim/plugin/lazygit.vim'
 
 call plug#end()
 
@@ -31,7 +30,7 @@ call plug#end()
 set termguicolors
 
 " set colorscheme
-colorscheme catppuccin_mocha
+silent! colorscheme catppuccin_mocha
 
 " set relative line numbers
 set relativenumber
