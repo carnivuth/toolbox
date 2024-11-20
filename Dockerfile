@@ -4,7 +4,7 @@ FROM archlinux:latest
 ENV TERM=xterm-256color
 
 # install deps
-RUN pacman -Sy sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
+RUN pacman -Sy ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
 
 # user setup for fixuid
 RUN groupadd toolbox -g 2000
@@ -31,16 +31,12 @@ RUN mkdir -p "/home/toolbox/.config/vim"
 RUN mkdir -p "/home/toolbox/.local/bin"
 RUN mkdir -p "/home/toolbox/.local/lib"
 
-RUN stow --target="/home/toolbox/.config/tmux" tmux
-RUN stow --target="/home/toolbox/.config/toolbox" toolbox
-RUN stow --target="/home/toolbox/.config/nvim" nvim
-RUN stow --target="/home/toolbox/.config/vim" vim
+RUN stow --target="/home/toolbox/.config/" etc
 RUN stow --target="/home/toolbox/.local/bin" bin
 RUN stow --target="/home/toolbox/.local/lib" lib
-RUN stow --target="/home/toolbox/.config" starship
 RUN git clone "https://github.com/tmux-plugins/tpm" "/home/toolbox/.config/tmux/plugins/tpm"
 RUN echo 'eval "$(starship init bash)"' >> "/home/toolbox/.bashrc"
-RUN echo 'source /home/toolbox/.config/toolbox/bash_integration_full.sh' >> "/home/toolbox/.bashrc"
+RUN echo 'source /home/toolbox/.config/toolbox/bash_integration.sh' >> "/home/toolbox/.bashrc"
 RUN vim +PlugInstall +qall
 RUN nvim "+Lazy install" "+qall"
 WORKDIR /home/toolbox
