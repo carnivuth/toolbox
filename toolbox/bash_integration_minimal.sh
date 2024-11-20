@@ -1,4 +1,5 @@
 #!/bin/bash
+export MANPAGER="vim -M +MANPAGER - "
 export PATH="$HOME/.local/bin:$PATH"
 export FZF_DEFAULT_COMMAND='rg "" -l '
 export FZF_DEFAULT_OPTS=" \
