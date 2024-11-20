@@ -85,6 +85,12 @@ function install_toolbox(){
   stow --target="$HOME/.local/lib" lib
   stow --target="$HOME/.config" etc
 
+  # create debian link for compatibility with older vim version
+  if [[ "$1" == "minimal" ]]; then
+    ln -s "$HOME/.config/vim" "$HOME/.vim"
+  fi
+
+
   # clone tpm repo
   if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
     git clone "https://github.com/tmux-plugins/tpm" "$HOME/.config/tmux/plugins/tpm"
