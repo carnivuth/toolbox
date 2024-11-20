@@ -5,10 +5,10 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # dependencies for full environment with neovim setup
-FULL_ENV_DEPS="man wikiman gcc go git stow npm neovim tmux fzf ripgrep starship curl tar"
+FULL_ENV_DEPS="man wikiman ranger gcc go git stow npm neovim tmux fzf ripgrep starship curl tar"
 
 # dependencies for minimal environment with vim setup
-MINIMAL_ENV_DEPS="man ripgrep git stow tmux fzf vim curl tar"
+MINIMAL_ENV_DEPS="man ranger ripgrep git stow tmux fzf vim curl tar"
 
 function minimal_env(){
   # always full env in archlinux
