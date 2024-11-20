@@ -20,6 +20,8 @@ Plug 'dense-analysis/ale'
 " catppuccin
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
+" ranger
+Plug 'rafaqz/ranger.vim'
 "Plug 'kdheepak/lazygit.nvim/plugin/lazygit.vim'
 
 call plug#end()
@@ -192,6 +194,16 @@ if ! empty(glob('/usr/bin/wl-copy'))
   nnoremap <silent>Y :call system("wl-copy", @")<CR>
 endif
 
+" ranger keybinds
+noremap <leader>rr :RangerEdit<cr>
+noremap <leader>rv :RangerVSplit<cr>
+noremap <leader>rs :RangerSplit<cr>
+noremap <leader>rt :RangerTab<cr>
+noremap <leader>ri :RangerInsert<cr>
+noremap <leader>ra :RangerAppend<cr>
+noremap <leader>rc :set operatorfunc=RangerChangeOperator<cr>g@
+noremap <leader>rd :RangerCD<cr>
+noremap <leader>rld :RangerLCD<cr>
 
 " vim airline configuration
 
