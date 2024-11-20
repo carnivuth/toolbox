@@ -41,6 +41,10 @@ return {
         name = "computer_vision",
         path = "~/vaults/computer_vision",
       },
+      {
+        name = "notes",
+        path = "~/standard/notes",
+      },
     },
     notes_subdir = "pages",
     completion = {

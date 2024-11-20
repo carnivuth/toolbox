@@ -61,6 +61,7 @@ uninstall_deps(){
 
 # USER FUNCTIONS
 function install_toolbox(){
+
   # create directories for stow, if they don't exist
   mkdir -p "$HOME/.config/tmux"
   mkdir -p "$HOME/.config/toolbox"
@@ -68,25 +69,21 @@ function install_toolbox(){
   mkdir -p "$HOME/.local/bin"
   mkdir -p "$HOME/.local/lib"
   mkdir -p "$VIM_FOLDER"
-  # stow binaries and configurations
-  stow --target="$HOME/.config/tmux" tmux
-  stow --target="$HOME/.config/toolbox" toolbox
-  stow --target="$HOME/.config/nvim" nvim
-  stow --target="$HOME/.config" starship
-  stow --target="$HOME/.local/bin" bin
-  stow --target="$HOME/.local/lib" lib
+
   # backup .vimrc than if stow fails backup .vim folder and try again
   if [[ -f "$VIMRC" ]]; then
     echo "backup vimrc file"
     mv "$VIMRC" "$VIMRC.$BACKUP_SUFFIX"
   fi
-  if ! stow --target="$VIM_FOLDER" vim; then
-    if [[ -d "$VIM_FOLDER" ]]; then
-      echo "backup .vim directory"
-      mv "$VIM_FOLDER" "$VIM_FOLDER.$BACKUP_SUFFIX"
-    fi
-    stow --target="$VIM_FOLDER" vim
+  if [[ -d "$VIM_FOLDER" ]]; then
+    echo "backup .vim directory"
+    mv "$VIM_FOLDER" "$VIM_FOLDER.$BACKUP_SUFFIX"
   fi
+
+  # stow configs
+  stow --target="$HOME/.local/bin" bin
+  stow --target="$HOME/.local/lib" lib
+  stow --target="$HOME/.config" etc
 
   # clone tpm repo
   if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
@@ -100,14 +97,8 @@ function install_toolbox(){
 
   # sourcing shell integration
   echo "adding toolbox bash integration"
-  if [[ "$1" == "minimal" ]]; then
-    if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration_minimal.sh' "$HOME/.bashrc" )" == "" ]]; then
-      echo 'source $HOME/.config/toolbox/bash_integration_minimal.sh' >> "$HOME/.bashrc"
-    fi
-  elif [[ "$1" == "full" ]]; then
-    if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration_full.sh' "$HOME/.bashrc" )" == "" ]]; then
-      echo 'source $HOME/.config/toolbox/bash_integration_full.sh' >> "$HOME/.bashrc"
-    fi
+  if [[ "$(grep 'source $HOME/.config/toolbox/bash_integration.sh' "$HOME/.bashrc" )" == "" ]]; then
+    echo 'source $HOME/.config/toolbox/bash_integration.sh' >> "$HOME/.bashrc"
   fi
   echo "installing vim plugins"
   vim +PlugInstall +qall
