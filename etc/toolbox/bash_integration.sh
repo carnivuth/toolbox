@@ -29,9 +29,10 @@ alias sr='store.sh remove'
 
 # tmux aliases
 alias tmls='tmux ls'
-alias tmks='tmux kill-server'
-alias tmk='tmux kill-session -t'
 alias tmm='tmux new-session -A -s $HOSTNAME'
+alias tmx='project.sh'
+alias tmk='tmux kill-session -t'
+alias tmks='tmux kill-server'
 
 # notify aliases
 alias nt='notify.sh'
