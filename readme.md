@@ -42,7 +42,7 @@ This command will download the docker image and run the container with the curre
 
 The toolbox consists on a minimal vim configuration and some usefull bash scripts
 
-- `project.sh` to open project in a predefined tmux session (tmuxify style)
+- `toolmux.sh` to open project in a predefined tmux session (tmuxify style)
 - `notify.sh` notify trough ntfy long running processes
 - `store.sh` install packages quick and easy
 
