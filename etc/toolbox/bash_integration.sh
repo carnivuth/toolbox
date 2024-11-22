@@ -7,7 +7,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # set manpager
 if ! minimal_env; then export MANPAGER="nvim +Man! ";else export MANPAGER="vim -M +MANPAGER - "; fi
 
-# set zff default command
+# set editor variable
+if ! minimal_env; then export EDITOR="nvim";else export EDITOR="vim"; fi
+
+# set fzf default command
 export FZF_DEFAULT_COMMAND='rg "" -l '
 
 # set fzf default options
@@ -30,9 +33,10 @@ alias sr='store.sh remove'
 # tmux aliases
 alias tmls='tmux ls'
 alias tmm='tmux new-session -A -s $HOSTNAME'
-alias tmx='project.sh'
 alias tmk='tmux kill-session -t'
 alias tmks='tmux kill-server'
+# bash script to open tmux in a default layout
+alias tmx='toolmux.sh'
 
 # notify aliases
 alias nt='notify.sh'
@@ -63,6 +67,7 @@ alias nv='nvim'
 
 #ssh alias
 alias ssh='TERM=xterm-256color ssh'
+alias sss='sssh.sh'
 
 # starship integration
 if ! minimal_env; then eval "$(starship init bash)"; fi
