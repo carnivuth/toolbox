@@ -1,12 +1,20 @@
 -- BASH
 require("lspconfig").bashls.setup{}
 
+-- DOCKER COMPOSE
+require("lspconfig").docker_compose_language_service.setup{
+  filetypes ={"docker-compose"};
+}
+
+-- DOCKER
+require("lspconfig").dockerls.setup{}
+
 -- TERRAFORM
 require("lspconfig").terraformls.setup{}
 
 -- ANSIBLE
 require('lspconfig').ansiblels.setup{
-  filetypes ={"yaml","yml"};
+  filetypes ={"ansible"};
   settings ={
     ansible = {
       ansible = {
