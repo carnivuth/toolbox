@@ -53,6 +53,8 @@ alias lla='ls --color=auto -pla'
 
 # git
 alias gst='git status'
+alias ga='git add'
+alias gcm='git commit -m'
 alias gd='git diff'
 alias gl='git log'
 alias gr='git restore'
