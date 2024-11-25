@@ -44,8 +44,11 @@ return {
       {
         name = "notes",
         path = "~/standard/notes",
-      },
+      }
     },
+    templates = {
+        folder = "templates",
+      },
     notes_subdir = "pages",
     completion = {
       nvim_cmp = true,
