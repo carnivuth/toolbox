@@ -1,5 +1,5 @@
 #!/bin/bash
-ENDPOINT='https://pokelab.ddns.net/ntfy/'
+ENDPOINT='https://ntfy.carnivuth.org/'
 
 notify(){
   TOPIC="$1"
