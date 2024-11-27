@@ -15,16 +15,9 @@ vim.keymap.set('n', '<Leader>k', '<cmd>bprevious<cr>')
 vim.keymap.set('n', '<Leader>gg', '<cmd>LazyGit<cr>')
 vim.keymap.set('i', 'jj', '<ESC>')
 
--- ALE bindings
---nnoremap <Leader>l :ALE
---nnoremap <Leader>ld :ALEGoToDefinition<CR>
---nnoremap <Leader>li :ALEGoToImplementation<CR>
---nnoremap <Leader>ln :ALENext<CR>
---nnoremap <Leader>lp :ALEPrevious<CR>
---nnoremap <Leader>lf :ALEFix<CR>
---nnoremap <Leader>lS :ALEStopAllLSPs<CR>
 -- Obsidian bindings
 vim.keymap.set('n', '<Leader>ol', '<cmd>ObsidianFollowLink<cr>')
+vim.keymap.set('n', '<Leader>ot', '<cmd>ObsidianTemplate<cr>')
 
 -- keep cursor on center when scrolling files
 vim.keymap.set('n', '<Leader>n', 'nzz')
