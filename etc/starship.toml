@@ -1,8 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 palette = 'catppuccin_mocha'
 format = '''
-[┌](bold green) $username@$hostname:$directory$git_branch$golang
-[└─>](bold green) '''
+[┌](bold lavender) [$username](bold lavender)[$directory](bold blue)[$git_branch](bold green)$golang
+[└─>](bold lavender) '''
 
 add_newline = false
 
@@ -11,14 +11,21 @@ disabled = true
 
 [hostname]
 ssh_only = false
-format ='[$hostname]($style)'
+format ='$hostname'
 
 [vagrant]
 disabled = true
 
 [username]
 show_always = true
-format ='[$user]($style)'
+format ='$user'
+style = 'bold lavender'
+
+[directory]
+format =':$path '
+
+[git_branch]
+format ='on $symbol$branch'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
