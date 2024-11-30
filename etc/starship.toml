@@ -19,7 +19,6 @@ disabled = true
 [username]
 show_always = true
 format ='$user'
-style = 'bold lavender'
 
 [directory]
 format =':$path '
