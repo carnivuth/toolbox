@@ -5,7 +5,7 @@ VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
 
 # dependencies for full environment with neovim setup
-FULL_ENV_DEPS="man wikiman ranger yq gcc go git stow npm neovim tmux fzf ripgrep starship curl tar"
+FULL_ENV_DEPS="man wikiman ranger unzip yq gcc go git stow npm neovim tmux fzf ripgrep starship curl tar"
 
 # dependencies for minimal environment with vim setup
 MINIMAL_ENV_DEPS="man ranger yq ripgrep git stow tmux fzf vim curl tar"
