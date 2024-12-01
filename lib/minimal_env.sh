@@ -1,5 +1,5 @@
 function minimal_env(){
-  source /etc/os-release
+  if [[ -f /etc/os-release ]]; then ource /etc/os-release; fi
   # always full env in archlinux
   if [[ "$ID" == "arch" ]]; then return 1; fi
   if [[ "$(whoami)" == "root" ]]; then return 0; fi

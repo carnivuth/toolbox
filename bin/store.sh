@@ -1,5 +1,5 @@
 #!/bin/bash
-source /etc/os-release
+if [[ -f /etc/os-release ]];then source /etc/os-release; fi
 
 if [[ "$(whoami)" != 'root' ]];then
   SUDO="sudo"

@@ -1,5 +1,5 @@
 #!/bin/bash
-source /etc/os-release
+if [[ -f /etc/os-release ]]; then source /etc/os-release; fi
 VIMRC="$HOME/.vimrc"
 VIM_FOLDER="$HOME/.vim"
 BACKUP_SUFFIX="ct.old"
@@ -44,6 +44,9 @@ install_deps(){
     "debian"|"ubuntu")
       $SUDO apt-get install "$@" -y
       ;;
+    "")
+      pkg install "$@" -y
+      ;;
   esac
 }
 
@@ -55,6 +58,9 @@ uninstall_deps(){
       ;;
     "debian"|"ubuntu")
       $SUDO apt-get remove "$@" -y
+      ;;
+    "")
+      pkg remove --purge "$@" -y
       ;;
   esac
 }
