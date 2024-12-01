@@ -143,6 +143,7 @@ function uninstall_toolbox(){
     mv "$VIM_FOLDER.$BACKUP_SUFFIX" "$VIM_FOLDER";
   fi
   echo "removing lines from bashrc"
+  if [[ ! -f "$HOME/.bashrc" ]];then touch $HOME/.bashrc; fi
   sed '/source \$HOME\/\.config\/toolbox\/bash_integration.*/d' -i "$HOME/.bashrc"
 }
 

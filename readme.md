@@ -10,10 +10,16 @@ The main objective is to have a simple, quick and efficient mini dev-environment
 
 ## INSTALLATION
 
+Toolbox support 2 installation procedures native (recommended) and as a docker container
+
 ### NATIVE INSTALLATION
 
 toolbox can be installed in a fully setup configuration with neovim or in a minimal setup with vim (bot of them with some similar functionalities),
-if toolbox is installed in a remote ssh environment the minimal setup is installed
+the installation scripts detect the full setup configuration based on the following parameters in order
+
+- distribution (*arch -> full / debian & termux ->minimal*)
+- remote ssh environment (*always minimal*)
+- if installation is performed as root user (*always minimal*)
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
@@ -26,6 +32,19 @@ to uninstall run:
 ```bash
 cd toolbox
 ./toolbox.sh uninstall
+```
+
+### TERMUX INSTALLATION
+
+In order to install toolbox on termux environment run the following
+
+```bash
+pkg update &&\
+pkg upgrade &&\
+pkg install git &&\
+git clone  https://github.com/carnivuth/toolbox &&\
+cd toolbox &&\
+./toolbox.sh
 ```
 
 ### DOCKER ENVIRONMENT
