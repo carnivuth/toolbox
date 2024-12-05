@@ -38,6 +38,10 @@ return {
         path = "~/vaults/mobile_systems",
       },
       {
+        name = "computer_graphics",
+        path = "~/vaults/computer_graphics",
+      },
+      {
         name = "computer_vision",
         path = "~/vaults/computer_vision",
       },
