@@ -1,5 +1,6 @@
 #!/bin/bash
 source "$HOME/.local/lib/minimal_env.sh"
+source "$HOME/.local/lib/toolmux_bash_completion.sh"
 
 # add toolbox bins to path
 export PATH="$HOME/.local/bin:$PATH"
@@ -32,7 +33,7 @@ alias sr='store.sh remove'
 
 # tmux aliases
 alias tmls='tmux ls'
-alias tmm='tmux new-session -A -s $HOSTNAME'
+alias tmm='toolmux.sh $HOME'
 alias tmk='tmux kill-session -t'
 alias tmks='tmux kill-server'
 # bash script to open tmux in a default layout
