@@ -41,9 +41,9 @@ alias tmx='toolmux.sh'
 
 # notify aliases
 alias nt='notify.sh'
-alias nth='notify.sh -t homelab'
-alias ntw='notify.sh -t work'
-alias ntr='notify.sh -t random'
+alias nth='notify.sh -t homelab -c'
+alias ntw='notify.sh -t work -c'
+alias ntr='notify.sh -t random -c'
 
 #ls aliases
 alias l='ls --color=auto -lart'
