@@ -34,6 +34,21 @@ function minimal_env(){
   return 1
 }
 
+function configure_hook(){
+  # create default monitor configuration file if does not exists
+  if [[ ! -e ".git/hooks/post-merge" ]]; then
+    echo 'create post-merge hook'
+    echo  -e "#!/bin/bash\n./toolbox.sh" > ".git/hooks/post-merge"
+  fi
+  chmod +x ".git/hooks/post-merge"
+  if [[ ! -e ".git/hooks/post-commit" ]]; then
+    echo 'create post-commit hook'
+    echo  -e "#!/bin/bash\n./toolbox.sh" > ".git/hooks/post-commit"
+  fi
+  chmod +x ".git/hooks/post-commit"
+}
+
+
 # wrapper around different package managers
 install_deps(){
   if [[ "$(whoami)" != "root" ]]; then SUDO=sudo;fi
@@ -151,7 +166,7 @@ function uninstall_toolbox(){
 COMMAND="$1"
 case "$COMMAND" in
   "help"|"--help")
-    echo "usage $0 [install_toolbox|uninstall_toolbox]"
+    echo "usage $0 [install|uninstall]"
     echo "to install from scratch run:"
     echo "$0"
     ;;
@@ -161,8 +176,10 @@ case "$COMMAND" in
   *)
     if minimal_env; then
       install_deps $MINIMAL_ENV_DEPS && uninstall_toolbox && install_toolbox minimal
+
     else
       install_deps $FULL_ENV_DEPS && uninstall_toolbox && install_toolbox full
     fi
+    configure_hook
     ;;
 esac
