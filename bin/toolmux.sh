@@ -24,10 +24,6 @@ toolmux(){
   else
       if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
 
-      # source python env if present
-      if [[ -d "env" ]]; then source "env/bin/activate"; fi
-
-
       # start a new session in the given directory
       if [ -n "$TMUX" ]; then
       tmux new  -n  "$EDITOR" -ds "$PROJECT_NAME"  "$EDITOR"

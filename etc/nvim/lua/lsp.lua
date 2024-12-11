@@ -1,5 +1,8 @@
 -- BASH
 require("lspconfig").bashls.setup{}
+require("lspconfig").yamlls.setup{
+  filetypes ={"yaml","ansible","docker-compose"};
+}
 
 -- DOCKER COMPOSE
 require("lspconfig").docker_compose_language_service.setup{
@@ -18,19 +21,19 @@ require('lspconfig').ansiblels.setup{
   settings ={
     ansible = {
       ansible = {
-        --path = "./env/bin/ansible"
+        path = vim.fn.getcwd() .. "/env/bin/ansible"
       },
       executionEnvironment = {
         enabled = false
       },
       python = {
-        --interpreterPath = "./env/bin/python"
+        interpreterPath = vim.fn.getcwd() .. "/env/bin/python3"
       },
       validation = {
         enabled = true,
         lint = {
           enabled = true,
-          --path = "./env/bin/ansible-lint"
+          path = vim.fn.getcwd() .. "/env/bin/ansible-lint",
         }
       }
     }
@@ -41,7 +44,7 @@ require('lspconfig').ansiblels.setup{
 require("lspconfig").pyright.setup{
   settings = {
     python = {
-      pythonPath  = "./env/bin/python3"
+      pythonPath  = vim.fn.getcwd() .. "/env/bin/python3"
     }
   }
 }
