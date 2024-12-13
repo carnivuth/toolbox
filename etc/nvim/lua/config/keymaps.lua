@@ -18,6 +18,7 @@ vim.keymap.set('i', 'jj', '<ESC>')
 -- Obsidian bindings
 vim.keymap.set('n', '<Leader>ol', '<cmd>ObsidianFollowLink<cr>')
 vim.keymap.set('n', '<Leader>ot', '<cmd>ObsidianTemplate<cr>')
+vim.keymap.set('n', '<Leader>on', '<cmd>ObsidianNew<cr>')
 
 -- keep cursor on center when scrolling files
 vim.keymap.set('n', '<Leader>n', 'nzz')
