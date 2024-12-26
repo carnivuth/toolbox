@@ -55,6 +55,9 @@ require("lspconfig").gopls.setup{}
 -- JAVASCRIPT
 require("lspconfig").eslint.setup{}
 
+-- HTML
+require("lspconfig").html.setup{}
+
 -- LUA
 require'lspconfig'.lua_ls.setup{
   settings = {
