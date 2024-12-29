@@ -3,6 +3,7 @@ return {
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-emoji',
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
 
@@ -46,6 +47,7 @@ return {
       }),
       sources = require("cmp").config.sources({
         { name = 'nvim_lsp' },
+        { name = 'emoji' },
         { name = 'luasnip' },
       }),
     })
