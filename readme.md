@@ -57,6 +57,15 @@ docker run  --pull=always --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basena
 
 This command will download the docker image and run the container with the current working directory mounted
 
+### INSTALL ONLY VIMRC
+
+it's possible to install only the vimrc file for minimal configs and quick editing on remote machines, curl the lates release and put it in the `.vimrc` file
+
+```bash
+VERSION=1.0
+cp $HOME/.vimrc $HOME/.vimrc.bak; curl -Ls https://github.com/carnivuth/toolbox/releases/download/vimrc-v$VERSION/vimrc > $HOME/.vimrc
+```
+
 ## FEATURES
 
 The toolbox consists on a minimal vim configuration and some usefull bash scripts
