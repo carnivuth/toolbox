@@ -36,6 +36,9 @@ set termguicolors
 " set colorscheme
 if exists("*plug#begin")
   silent! colorscheme catppuccin_mocha
+else
+  silent! colorscheme slate
+
 endif
 
 " set relative line numbers
