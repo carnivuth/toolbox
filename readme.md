@@ -62,8 +62,32 @@ This command will download the docker image and run the container with the curre
 it's possible to install only the vimrc file for minimal configs and quick editing on remote machines, curl the lates release and put it in the `.vimrc` file
 
 ```bash
-VERSION=1.0
+VERSION=1.0.1
 cp $HOME/.vimrc $HOME/.vimrc.bak; curl -Ls https://github.com/carnivuth/toolbox/releases/download/vimrc-v$VERSION/vimrc > $HOME/.vimrc
+```
+
+To install on remote environment as application probes with ansible:
+
+```yaml
+---
+- name: Install toolbox vimrc
+  hosts: all
+  vars:
+    # change this for different versions
+    version: 1.0.1
+  tasks:
+    - name: Ensure vim is installed
+      become: true
+      ansible.builtin.apt:
+        - name: vim
+        - state: present
+
+    - name: Download vimrcfile
+      ansible.builtin.get_url:
+        url: https://github.com/carnivuth/toolbox/releases/download/vimrc-v{{ version }}/vimrc
+        dest: ~/.vimrc
+        # avoid deleting already present vimrc files
+        backup: true
 ```
 
 ## FEATURES
