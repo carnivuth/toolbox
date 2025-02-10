@@ -8,6 +8,9 @@
 if filereadable(expand("~/.config/vim/autoload/plug.vim"))
   call plug#begin()
 
+  " jinja plugin
+  Plug 'lepture/vim-jinja'
+
   " fzf plugin
   Plug 'junegunn/fzf'
 
