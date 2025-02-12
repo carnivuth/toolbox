@@ -136,11 +136,7 @@ function uninstall_toolbox(){
   rm -rf "$HOME/.vim/plugged"
   rm -rf "$HOME/.config/tmux/plugins"
   rm -rf "$HOME/.local/share/nvim"
-  if [[ -d "$VIM_FOLDER" ]];then stow --target="$VIM_FOLDER" -D vim; fi
-  if [[ -d "$HOME/.config/tmux" ]];then stow --target="$HOME/.config/tmux" -D tmux; fi
-  if [[ -d "$HOME/.config/toolbox" ]];then stow --target="$HOME/.config/toolbox" -D toolbox; fi
-  if [[ -d "$HOME/.config/nvim" ]];then stow --target="$HOME/.config/nvim" -D nvim; fi
-  if [[ -d "$HOME/.config" ]];then stow --target="$HOME/.config" -D starship; fi
+  if [[ -d "$HOME/.config" ]];then stow --target="$HOME/.config" -D etc; fi
   if [[ -d "$HOME/.local/bin" ]];then stow --target="$HOME/.local/bin" -D bin; fi
   if [[ -d "$HOME/.local/lib" ]];then stow --target="$HOME/.local/lib" -D lib; fi
 
