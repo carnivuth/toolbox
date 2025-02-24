@@ -200,6 +200,7 @@ vnoremap ( <ESC>`>a)<ESC>`<i(<ESC>
 vnoremap [ <ESC>`>a]<ESC>`<i[<ESC>
 vnoremap { <ESC>`>a}<ESC>`<i{<ESC>
 vnoremap {{ <ESC>`>a}}<ESC>`<i{{<ESC>
+vnoremap \| <ESC>`>a\|<ESC>`<i\|<ESC>
 vnoremap <C-i> <ESC>`>a*<ESC>`<i*<ESC>
 vnoremap <C-b> <ESC>`>a**<ESC>`<i**<ESC>
 
