@@ -1,5 +1,6 @@
 .netrwhist
 .vagrant
 plugged
-.swp
-lazy-lock.json
+*.swp
+*.sug
+*.spl
