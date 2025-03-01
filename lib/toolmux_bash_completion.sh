@@ -8,4 +8,5 @@ _tmux_complete_session() {
   fi
 }
 complete -A directory -F _tmux_complete_session tmx
+complete -A directory -F _tmux_complete_session tmk
 complete -A directory -F _tmux_complete_session toolmux.sh
