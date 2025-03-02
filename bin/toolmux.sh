@@ -6,7 +6,7 @@ function help(){
   echo "  open default tmux configuration in the given folder"
 }
 
-toolmux(){
+function toolmux(){
 
   # set  variable based on parameters
   if [[ "$1" != '' ]]; then PROJECT_NAME="$(basename "$1")"; else PROJECT_NAME="$(basename "$(pwd)")";fi
@@ -17,28 +17,24 @@ toolmux(){
 
       # check if already in tmux session and switch client
       if [ -n "$TMUX" ]; then
-        tmux switch-client -t "$PROJECT_NAME"\; select-window -t "$EDITOR" \; select-pane -t 0 \;
+        tmux switch-client -t "$PROJECT_NAME"\;
       else
-        tmux attach-session -t "$PROJECT_NAME"\; select-window -t "$EDITOR" \; select-pane -t 0 \;
+        tmux attach-session -t "$PROJECT_NAME"\;
       fi
   else
       if [[ "$1" != '' ]] && [[ -d "$1" ]]; then cd "$1" || exit 1; fi
 
-      # start a new session in the given directory
-      if [ -n "$TMUX" ]; then
-      tmux new  -n  "$EDITOR" -ds "$PROJECT_NAME"  "$EDITOR"
+        CONFIG_FILE="$HOME/.config/toolmux/config.conf"
+        if [[ -f ".tmux.conf" ]]; then CONFIG_FILE=".tmux.conf"; fi
 
-      tmux switch-client -t "$PROJECT_NAME" \; set -w remain-on-exit on \; \
-        new-window -n "$WORKSPACE" \; \
-        select-window -t "$EDITOR" \; \
-        select-pane -t 0 \;
-
-      else
-      tmux new  -n  "$EDITOR" -s "$PROJECT_NAME"  "$EDITOR" \;  set -w remain-on-exit on \; \
-        new-window -n "$WORKSPACE" \; \
-        select-window -t "$EDITOR" \; \
-        select-pane -t 0 \;
-      fi
+        # check if command is runned inside tmux session
+        if [ -n "$TMUX" ]; then
+          echo "tmux new -d -s $PROJECT_NAME -n $PROJECT_NAME; tmux switch-client -t $PROJECT_NAME\; source-file $CONFIG_FILE\;"
+          tmux new -d -s $PROJECT_NAME -n $PROJECT_NAME; tmux switch-client -t $PROJECT_NAME\; source-file $CONFIG_FILE\;
+        else
+          echo "tmux new -s $PROJECT_NAME -n $PROJECT_NAME \; source-file $CONFIG_FILE\;"
+          tmux new -s $PROJECT_NAME -n $PROJECT_NAME \; source-file $CONFIG_FILE\;
+        fi
 
   fi
 }
