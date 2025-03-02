@@ -1,18 +1,28 @@
-# TOOLBOX
+# Toolbox
 
 > personal tools for writing code and do sysadmin and devops stuff :)
 
 ![](./demo.gif)
 
-## GOALS
+## Goals
 
 The main objective is to have a simple, quick and efficient mini dev-environment that can run on a pletora of different systems without reling on some complex dependencies
 
-## INSTALLATION
+## Features
+
+The toolbox consists on a minimal vim configuration and some useful bash scripts
+
+- `toolmux.sh` open project directory in a tmux session where panes and windows are created based on a config file `.tmux.conf` placed in the project directory (tmuxify style)
+- `notify.sh` execute command and send notification trough [ntfy](https://ntfy.sh/), useful for long running processes
+- `store.sh` tui for installing packages in arch and debian based distros using [fzf](https://github.com/junegunn/fzf)
+
+Vim and neovim are configured with some default integration like fzf and lazygit for file management and git operations, basic `ftplugin` for some devops tools and languages (`terraform`, `python`, `bash`, `yaml` and others),
+
+## Installation
 
 Toolbox support 2 installation procedures native (recommended) and as a docker container
 
-### NATIVE INSTALLATION
+### Native installation
 
 toolbox can be installed in a fully setup configuration with neovim or in a minimal setup with vim (bot of them with some similar functionalities),
 the installation scripts detect the full setup configuration based on the following parameters in order
@@ -34,7 +44,7 @@ cd toolbox
 ./toolbox.sh uninstall
 ```
 
-### TERMUX INSTALLATION
+### Termux installation
 
 In order to install toolbox on termux environment run the following
 
@@ -47,7 +57,7 @@ cd toolbox &&\
 ./toolbox.sh
 ```
 
-### DOCKER ENVIRONMENT
+### Docker environment
 
 toolbox can be installed also with docker
 
@@ -57,7 +67,7 @@ docker run  --pull=always --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basena
 
 This command will download the docker image and run the container with the current working directory mounted
 
-### INSTALL ONLY VIMRC
+### Install only `vimrc`
 
 it's possible to install only the vimrc file for minimal configs and quick editing on remote machines, curl the lates release and put it in the `.vimrc` file
 
@@ -89,15 +99,3 @@ To install on remote environment as application probes with ansible:
         # avoid deleting already present vimrc files
         backup: true
 ```
-
-## FEATURES
-
-The toolbox consists on a minimal vim configuration and some usefull bash scripts
-
-- `toolmux.sh` to open project in a predefined tmux session (tmuxify style)
-- `notify.sh` notify trough ntfy long running processes
-- `store.sh` install packages quick and easy
-
-vim comes preconfigured with some personal bindings and fzf integrations, basic ftplugin for some devops tools and languages (terraform, python, bash, yaml and others), vim-ale is also preinstalled and configured for some basic linting with other languages
-
-Existing vim configuration are backupped and restored after uninstallation,
