@@ -18,6 +18,14 @@ The toolbox consists on a minimal vim configuration and some useful bash scripts
 
 Vim and neovim are configured with some default integration like fzf and lazygit for file management and git operations, basic `ftplugin` for some devops tools and languages (`terraform`, `python`, `bash`, `yaml` and others),
 
+### Configure `tmm` alias
+
+To avoid `tmm` alias default `$EDITOR` window create a configuration file in the `$HOME` directory
+
+```bash
+touch $HOME/.tmux.conf
+```
+
 ## Installation
 
 Toolbox support 2 installation procedures native (recommended) and as a docker container
