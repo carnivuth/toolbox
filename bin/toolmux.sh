@@ -29,10 +29,8 @@ function toolmux(){
 
         # check if command is runned inside tmux session
         if [ -n "$TMUX" ]; then
-          echo "tmux new -d -s $PROJECT_NAME -n $PROJECT_NAME; tmux switch-client -t $PROJECT_NAME\; source-file $CONFIG_FILE\;"
           tmux new -d -s $PROJECT_NAME -n $PROJECT_NAME; tmux switch-client -t $PROJECT_NAME\; source-file $CONFIG_FILE\;
         else
-          echo "tmux new -s $PROJECT_NAME -n $PROJECT_NAME \; source-file $CONFIG_FILE\;"
           tmux new -s $PROJECT_NAME -n $PROJECT_NAME \; source-file $CONFIG_FILE\;
         fi
 
