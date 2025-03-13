@@ -30,10 +30,6 @@ return {
         path = "~/vaults/datamining",
       },
       {
-        name = "TIL",
-        path = "~/vaults/TIL",
-      },
-      {
         name = "mobile_systems",
         path = "~/vaults/mobile_systems",
       },
