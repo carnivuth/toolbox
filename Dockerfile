@@ -4,7 +4,7 @@ FROM archlinux:latest
 ENV TERM=xterm-256color
 
 # install deps
-RUN pacman -Sy mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
+RUN pacman -Sy jdk-openjdk mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
 
 # user setup for fixuid
 RUN groupadd toolbox -g 2000
