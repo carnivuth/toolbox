@@ -58,9 +58,6 @@ require("lspconfig").eslint.setup{}
 -- HTML
 require("lspconfig").html.setup{}
 
--- LATEX
-require("lspconfig").ltex.setup{}
-
 -- LUA
 require'lspconfig'.lua_ls.setup{
   settings = {
