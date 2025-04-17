@@ -18,33 +18,9 @@ return {
      ui = { enable = false },
     workspaces = {
       {
-        name = "linguaggi_modelli_computazionali",
-        path = "~/vaults/linguaggi_modelli_computazionali",
+        name = "2nd_brain",
+        path = "~/vaults/2nd_brain",
       },
-      {
-        name = "sicurezza_informazione",
-        path = "~/vaults/sicurezza_informazione",
-      },
-      {
-        name = "datamining",
-        path = "~/vaults/datamining",
-      },
-      {
-        name = "mobile_systems",
-        path = "~/vaults/mobile_systems",
-      },
-      {
-        name = "computer_graphics",
-        path = "~/vaults/computer_graphics",
-      },
-      {
-        name = "computer_vision",
-        path = "~/vaults/computer_vision",
-      },
-      {
-        name = "notes",
-        path = "~/standard/notes",
-      }
     },
     templates = {
         folder = "templates",
