@@ -28,8 +28,6 @@ export FZF_DEFAULT_OPTS=" \
 fi
 
 alias s='sudo'
-alias si='store.sh install'
-alias sr='store.sh remove'
 
 # tmux aliases
 alias tmls='tmux ls'

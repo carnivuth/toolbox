@@ -14,7 +14,6 @@ The toolbox consists on a minimal vim configuration and some useful bash scripts
 
 - `toolmux.sh` open project directory in a tmux session where panes and windows are created based on a config file `.tmux.conf` placed in the project directory (tmuxify style)
 - `notify.sh` execute command and send notification trough [ntfy](https://ntfy.sh/), useful for long running processes
-- `store.sh` tui for installing packages in arch and debian based distros using [fzf](https://github.com/junegunn/fzf)
 
 Vim and neovim are configured with some default integration like fzf and lazygit for file management and git operations, basic `ftplugin` for some devops tools and languages (`terraform`, `python`, `bash`, `yaml` and others),
 
