@@ -14,6 +14,7 @@ return {
       "html",
       "lua_ls",
       "yamlls",
+      "rust_analyzer",
     },
   }
 }
