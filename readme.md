@@ -23,7 +23,7 @@ Toolbox support 2 installation procedures native (recommended) and as a docker c
 
 ### Native installation
 
-toolbox can be installed in a fully setup configuration with neovim in an archlinux box
+Native installation can be performed in an archlinux box as follows
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
