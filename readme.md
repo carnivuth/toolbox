@@ -17,26 +17,13 @@ The toolbox consists on a minimal vim configuration and some useful bash scripts
 
 Vim and neovim are configured with some default integration like fzf and lazygit for file management and git operations, basic `ftplugin` for some devops tools and languages (`terraform`, `python`, `bash`, `yaml` and others),
 
-### Configure `tmm` alias
-
-To avoid `tmm` alias default `$EDITOR` window create a configuration file in the `$HOME` directory
-
-```bash
-touch $HOME/.tmux.conf
-```
-
 ## Installation
 
 Toolbox support 2 installation procedures native (recommended) and as a docker container
 
 ### Native installation
 
-toolbox can be installed in a fully setup configuration with neovim or in a minimal setup with vim (bot of them with some similar functionalities),
-the installation scripts detect the full setup configuration based on the following parameters in order
-
-- distribution (*arch -> full / debian & termux ->minimal*)
-- remote ssh environment (*always minimal*)
-- if installation is performed as root user (*always minimal*)
+toolbox can be installed in a fully setup configuration with neovim in an archlinux box
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
@@ -51,22 +38,9 @@ cd toolbox
 ./toolbox.sh uninstall
 ```
 
-### Termux installation
-
-In order to install toolbox on termux environment run the following
-
-```bash
-pkg update &&\
-pkg upgrade &&\
-pkg install git &&\
-git clone  https://github.com/carnivuth/toolbox &&\
-cd toolbox &&\
-./toolbox.sh
-```
-
 ### Docker environment
 
-toolbox can be installed also with docker
+Toolbox can be installed also with docker, this is useful to tryout the repository and it's functionalities, execute the following command inside a project directory
 
 ```bash
 docker run  --pull=always --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basename "$(pwd)")" --name toolbox -it carnivuth/toolbox bash
@@ -76,7 +50,7 @@ This command will download the docker image and run the container with the curre
 
 ### Install only `vimrc`
 
-it's possible to install only the vimrc file for minimal configs and quick editing on remote machines, curl the lates release and put it in the `.vimrc` file
+It's possible to install only the vimrc file for minimal configs and quick editing on remote machines, curl the lates release and put it in the `.vimrc` file
 
 ```bash
 VERSION=1.0.1
