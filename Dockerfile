@@ -3,6 +3,9 @@ FROM archlinux:latest
 # env settings for colors
 ENV TERM=xterm-256color
 
+# setting editor for utilities
+ENV EDITOR=nvim
+
 # install deps
 RUN pacman -Sy rust mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git --noconfirm
 
