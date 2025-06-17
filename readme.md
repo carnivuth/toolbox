@@ -31,7 +31,7 @@ cd toolbox
 ./toolbox.sh
 ```
 
-to uninstall run:
+To uninstall run:
 
 ```bash
 cd toolbox
@@ -43,7 +43,7 @@ cd toolbox
 Toolbox can be installed also with docker, this is useful to tryout the repository and it's functionalities, execute the following command inside a project directory
 
 ```bash
-docker run  --pull=always --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basename "$(pwd)")" --name toolbox -it carnivuth/toolbox bash
+docker run --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basename "$(pwd)")" --name toolbox -it carnivuth/toolbox /home/toolbox/.local/bin/toolmux.sh "/home/toolbox/$(basename "$(pwd)")"
 ```
 
 This command will download the docker image and run the container with the current working directory mounted
