@@ -6,6 +6,7 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
     require("telescope").setup{
       defaults = {
+        file_ignore_patterns = { "venv", "__pycache__", "%.xlsx", "%.jpg", "%.png", "%.webp", "%.pdf", "%.odt", "%.docx", "%.ico", },
         layout_strategy = "horizontal",
         layout_config = {
           --preview_width = 0.65,
