@@ -78,3 +78,7 @@ bash
 dotfiles
 bash
 kubernetes
+autoscaler
+openmetrics
+QoS
+TSN
