@@ -77,3 +77,7 @@ keyring
 bash
 dotfiles
 bash
+QoS
+kubernetes
+autoscaler
+openmetrics
