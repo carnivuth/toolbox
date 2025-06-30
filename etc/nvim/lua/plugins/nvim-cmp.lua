@@ -1,5 +1,5 @@
 return {
-"hrsh7th/nvim-cmp",
+  "hrsh7th/nvim-cmp",
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
@@ -13,11 +13,13 @@ return {
   config = function()
     local cmp =require("cmp")
     cmp.setup({
+
       snippet = {
         expand = function(args)
           require("luasnip").lsp_expand(args.body)
         end,
       },
+
       mapping = require("cmp").mapping.preset.insert({
         ['<C-d>'] = require("cmp").mapping.scroll_docs(-4),
         ['<C-f>'] = require("cmp").mapping.scroll_docs(4),
@@ -26,6 +28,7 @@ return {
           behavior = require("cmp").ConfirmBehavior.Replace,
           select = true,
         },
+
         ['<Tab>'] = require("cmp").mapping(function(fallback)
           if require("cmp").visible() then
             require("cmp").select_next_item()
@@ -49,9 +52,15 @@ return {
         { name = 'nvim_lsp' },
         { name = 'emoji' },
         { name = 'luasnip' },
+        { name = 'buffer' },
       }),
     })
-
-    end
+    cmp.setup.filetype("tex", {
+      sources = {
+        { name = 'vimtex' },
+        { name = 'buffer' },
+      },
+    })
+  end
 }
 
