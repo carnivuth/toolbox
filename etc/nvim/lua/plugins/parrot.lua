@@ -5,6 +5,7 @@ return {
   config = function()
     require("parrot").setup {
       -- Providers must be explicitly set up to make them available.
+      enable_preview_mode = false,
       providers = {
         ollama = {
           name = "ollama",
@@ -28,6 +29,7 @@ return {
           },
           models = {
             "deepseek-coder:1.3b",
+            "deepseek-coder-v2:16b",
           },
           resolve_api_key = function()
             return true
