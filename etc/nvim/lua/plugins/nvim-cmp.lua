@@ -53,6 +53,7 @@ return {
         { name = 'emoji' },
         { name = 'luasnip' },
         { name = 'buffer' },
+        { name = "parrot" },
       }),
     })
     cmp.setup.filetype("tex", {
