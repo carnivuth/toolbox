@@ -45,3 +45,7 @@ vim.keymap.set('v', '|', '<ESC>`>a|<ESC>`<i|<ESC>')
 vim.keymap.set('v', '<C-i>', '<ESC>`>a*<ESC>`<i*<ESC>')
 vim.keymap.set('v', '<C-m>', '<ESC>`>a$<ESC>`<i$<ESC>')
 vim.keymap.set('v', '<C-b>', '<ESC>`>a**<ESC>m<i**<ESC>')
+
+-- parrot keybindings
+vim.keymap.set('v', '<Leader>pi', '<cmd>PrtImplement <cr>')
+vim.keymap.set('n', '<Leader>pm', '<cmd>PrtModel<cr>')
