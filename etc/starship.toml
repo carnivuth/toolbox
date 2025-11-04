@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 palette = 'catppuccin_mocha'
 format = '''
-[┌](bold lavender) [$username](bold lavender)[$directory](bold blue)[$git_branch](bold green)$golang
+[┌](bold lavender) [$username](bold lavender)[$directory](bold blue)[$git_branch](bold green)
 [└─>](bold lavender) '''
 
 add_newline = false
@@ -10,6 +10,7 @@ add_newline = false
 disabled = true
 
 [hostname]
+disabled = false
 ssh_only = false
 format ='$hostname'
 
