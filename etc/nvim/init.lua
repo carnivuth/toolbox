@@ -8,6 +8,7 @@ require("config.lazy")
 require("config.filetypes")
 require("config.keymaps")
 require("config.autocmds")
+require("hugo")
 
 -- lsp configurations
 require("lsp")

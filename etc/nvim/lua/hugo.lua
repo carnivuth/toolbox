@@ -94,11 +94,19 @@ if is_hugo_project() then
     complete = hugo_complete_arglead,
   })
 
-  -- open note with standard naming
-  vim.api.nvim_create_user_command('NewNote', function(opts)
+  -- open note with default naming
+  vim.api.nvim_create_user_command('HNewNote', function(opts)
     local filename = os.time() .. ".md"
     vim.fn.system("hugo new content " .. filename )
     vim.cmd('edit content/' .. filename )
+  end, { nargs = "*" })
+
+  -- open note with default naming
+  vim.api.nvim_create_user_command('HPasteImage', function(opts)
+    local filename = os.time() .. ".png"
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    vim.fn.system("wl-paste > static/" .. filename )
+    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { "![](/" .. filename .. ")" })
   end, { nargs = "*" })
 
 end
