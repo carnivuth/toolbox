@@ -1,6 +1,6 @@
 #!/bin/bash
 # dependencies for full environment with neovim setup
-FULL_ENV_DEPS="rust mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git"
+DEPS="rust mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git"
 
 function configure_hook(){
   # create default monitor configuration file if does not exists
@@ -81,7 +81,7 @@ case "$COMMAND" in
     uninstall_toolbox
     ;;
   *)
-    install_deps $FULL_ENV_DEPS && install_toolbox full
+    install_deps $DEPS && install_toolbox full
     configure_hook
     ;;
 esac
