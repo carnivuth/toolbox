@@ -1,5 +1,4 @@
 #!/bin/bash
-source "$HOME/.local/lib/toolmux_bash_completion.sh"
 
 # add toolbox bins to path
 export PATH="$HOME/.local/bin:$PATH"
