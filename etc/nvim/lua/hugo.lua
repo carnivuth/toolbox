@@ -109,4 +109,12 @@ if is_hugo_project() then
     vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { "![](/" .. filename .. ")" })
   end, { nargs = "*" })
 
+  -- add link to a specific note
+  vim.api.nvim_create_user_command('HLink', function(opts)
+    local search_term = opts.args
+    local slug = string.gsub(vim.fn.system("basename $(grep -l -i -e '^title: " .. search_term .. "' content/*.md) " ), "\n", "")
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { "[" .. search_term .. "](/" .. slug .. ")" })
+  end, { nargs = "*" })
+
 end
