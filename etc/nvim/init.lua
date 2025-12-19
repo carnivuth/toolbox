@@ -8,10 +8,13 @@ require("config.lazy")
 require("config.filetypes")
 require("config.keymaps")
 require("config.autocmds")
+
+-- hugo custom commands
 require("hugo")
 
 -- lsp configurations
-require("lsp")
+require("languages.lsp")
+require("languages.treesitter")
 
 -- OPTIONS
 vim.o.relativenumber=true
