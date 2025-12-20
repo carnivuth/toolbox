@@ -64,3 +64,5 @@ alias sss='sssh.sh'
 
 # starship integration
 eval "$(starship init bash)"
+# direnv integration
+eval "$(direnv hook bash)"
