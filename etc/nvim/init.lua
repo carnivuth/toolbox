@@ -24,6 +24,13 @@ vim.o.expandtab=true
 vim.o.incsearch=true
 vim.o.hlsearch=true
 vim.o.history=1000
+vim.diagnostic.enable(true)
+vim.diagnostic.config(
+  {
+    float = true,
+    virtual_text = true,
+  }
+)
 vim.o.wildmenu=true
 vim.o.wildmode="list:longest"
 vim.opt.wildignore={'*.docx','*.jpg','*.png','*.gif','*.pdf','*.pyc','*.exe','*.flv','*.img','*.xlsx'}
