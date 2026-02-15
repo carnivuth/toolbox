@@ -7,14 +7,10 @@ local lsps = {
     { "gopls" },
     { "eslint" },
     { "dockerls" },
+    { "docker_compose_language_service" },
     {
       "yamlls",{
         filetypes ={"yaml","ansible","docker-compose"};
-      }
-    },
-    {
-      "docker_compose_language_service",{
-        filetypes ={"docker-compose"}
       }
     },
     {
