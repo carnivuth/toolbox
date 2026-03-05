@@ -13,8 +13,8 @@ return {
 
       keymap = {
         accept = "<C-l>",
-        next = "<M-]>",
-        prev = "<M-[>",
+        next = "<C-]>",
+        prev = "<C-[>",
       },
     },
     panel = { enabled = false },
