@@ -5,16 +5,15 @@ return {
   event = "BufReadPost",
   opts = {
     suggestion = {
-      enabled = not vim.g.ai_cmp,
+      enabled = true,
       trigger_on_accept = true,
 
       auto_trigger = true,
       hide_during_completion = vim.g.ai_cmp,
 
       keymap = {
-        accept = false, -- handled by nvim-cmp / blink.cmp
+        accept = "<C-l>",
         next = "<M-]>",
-
         prev = "<M-[>",
       },
     },
