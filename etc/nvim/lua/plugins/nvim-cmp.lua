@@ -51,6 +51,7 @@ return {
         end, { 'i', 's' }),
       }),
       sources = require("cmp").config.sources({
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'emoji' },
         { name = 'luasnip' },

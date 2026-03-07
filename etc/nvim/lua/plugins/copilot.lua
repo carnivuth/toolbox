@@ -12,12 +12,13 @@ return {
       hide_during_completion = vim.g.ai_cmp,
 
       keymap = {
-        accept = "<C-l>",
-        next = "<C-]>",
-        prev = "<C-[>",
+        accept = false,
+        next = false,
+        prev = false,
       },
     },
     panel = { enabled = false },
+    suggestion = { enabled = false },
     filetypes = {
       markdown = true,
 
