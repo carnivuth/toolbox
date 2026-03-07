@@ -4,19 +4,6 @@ return {
   build = ":Copilot auth",
   event = "BufReadPost",
   opts = {
-    suggestion = {
-      enabled = true,
-      trigger_on_accept = true,
-
-      auto_trigger = true,
-      hide_during_completion = vim.g.ai_cmp,
-
-      keymap = {
-        accept = false,
-        next = false,
-        prev = false,
-      },
-    },
     panel = { enabled = false },
     suggestion = { enabled = false },
     filetypes = {
