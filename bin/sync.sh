@@ -17,5 +17,8 @@ inotifywait \
 --recursive \
 --exclude "$(find .  -name '.git' -type d -printf '%P|').*\.aux|.*\.bbl|.*\.bcf|.*\.bcf-SAVE-ERROR|.*\.blg|.*\.fdb_latexmk|.*\.fls|.*\.idx|.*\.ilg|.*\.ind|.*\.log|.*\.out|.*\.pdf|.*\.run" \
 --format "%w %e %f" $TARGET_FILES | while read file event newfile; do
-rsync -avr . ${REMOTE}:~/$(basename $(pwd) )
+
+# syncronize with remote host deleting remote files with local ones
+rsync -avr --delete . ${REMOTE}:~/$(basename $(pwd) )
+
 done
