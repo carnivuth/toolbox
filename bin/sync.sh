@@ -9,6 +9,9 @@ TARGET_FILES="."
 if [[ $# -ne 1 ]]; then echo "Usage: $0 <remote_host>"; exit 1; fi
 if ! ping -c 1 -W 1 "$1" > /dev/null; then echo "Error: Remote host '$1' is not reachable."; exit 1; fi
 
+# syncronize with remote host deleting remote files with local ones
+rsync -avr --delete . ${REMOTE}:~/$(basename $(pwd) )
+
 # monitor for move_self and create cause vim deletes original file and rename swapfile
 inotifywait \
 --monitor  \
