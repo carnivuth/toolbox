@@ -4,42 +4,41 @@
 
 ![](./demo.gif)
 
-## Goals
-
-The main objective is to have a simple, quick and efficient mini dev-environment that can run on a pletora of different systems without reling on some complex dependencies
-
 ## Features
 
-The toolbox consists on a minimal vim configuration and some useful bash scripts
+The main objective is to have a simple, quick and efficient mini dev-environment that can run on an archlinux box. The repo consists of
 
-- `toolmux.sh` open project directory in a tmux session where panes and windows are created based on a config file `.tmux.conf` placed in the project directory (tmuxify style)
+- neovim configuration with some default plugins (for a complete list of plugins check the [plugins directory](./etc/nvim/lua/plugins))
+- vim configuration as backup
+- [tmux](https://github.com/tmux/tmux/wiki) configuration
+- [starship](https://starship.rs/) configuration
 
-Vim and neovim are configured with some default integration like fzf and lazygit for file management and git operations, basic `ftplugin` for some devops tools and languages (`terraform`, `python`, `bash`, `yaml` and others),
+- [`toolmux.sh`](./bin/toolmux.sh) which is a script to open a tmux session inside a given directory where panes and windows are created based on a config file `.tmux.conf` placed in the project directory (tmuxify style) this also to simulate the `code` command
 
-## Installation
+```bash
+# instead of
+code my-project
+# i run
+toolmux.sh my-project
+# there is also an alias
+tmx my-project
+```
 
-Toolbox support 2 installation procedures native (recommended) and as a docker container
+- [`sync.sh`](./bin/sync.sh) which is a script to perform sync operations of the given directory to a set of remote vms at each file change, useful to test the project on remote environments without manually syncing file projects it also mimics the workflow with `vscode` and sshfs extension
 
-### Native installation
+### installation
 
-Native installation can be performed in an archlinux box as follows
+Installation can be performed in an archlinux box as follows
 
 ```bash
 git clone https://github.com/carnivuth/toolbox
 cd toolbox
-./toolbox.sh
+make install # this one will require the use of sudo to install dependencies
 ```
 
-To uninstall run:
+### Run as a Docker container
 
-```bash
-cd toolbox
-./toolbox.sh uninstall
-```
-
-### Docker environment
-
-Toolbox can be installed also with docker, this is useful to tryout the repository and it's functionalities, execute the following command inside a project directory
+Toolbox can be installed also with docker, this is useful to tryout the repository and it's functionalities without touching your box, execute the following command inside a project directory
 
 ```bash
 docker run --rm -u $UID:$UID -v "$(pwd)"/:/home/toolbox/"$(basename "$(pwd)")" --name toolbox -it carnivuth/toolbox /home/toolbox/.local/bin/toolmux.sh "/home/toolbox/$(basename "$(pwd)")"
@@ -78,4 +77,22 @@ To install on remote environment as application probes with ansible:
         dest: ~/.vimrc
         # avoid deleting already present vimrc files
         backup: true
+```
+
+### Updating
+
+The `install` make target creates a git hook that on pull will trigger the installation procedure, for this to work pacman needs to be executed without password
+
+```bash
+echo "$USER ALL=(ALL:ALL) NOPASSWD:/bin/pacman" | sudo tee "/etc/sudoers.d/$USER"
+```
+
+### Uninstall toolbox
+
+To uninstall run:
+
+> [!WARNING] this will leave packages installed as dependencies
+```bash
+cd toolbox
+make clean
 ```
