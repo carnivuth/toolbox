@@ -30,6 +30,15 @@ tmx my-project
 
 Installation can be performed in an archlinux box as follows
 
+- ensure sudo is configured to run `pacman` without password
+
+> [!NOTE] this is required also for the updating
+```bash
+echo "$USER ALL=(ALL:ALL) NOPASSWD:/bin/pacman" | sudo tee "/etc/sudoers.d/$USER"
+```
+
+- then run the make target
+
 ```bash
 git clone https://github.com/carnivuth/toolbox
 cd toolbox
