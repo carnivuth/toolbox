@@ -65,7 +65,7 @@ VERSION=1.0.1
 cp $HOME/.vimrc $HOME/.vimrc.bak; curl -Ls https://github.com/carnivuth/toolbox/releases/download/vimrc-v$VERSION/vimrc > $HOME/.vimrc
 ```
 
-To install on remote environment as application probes with ansible:
+To install on remote environments with ansible:
 
 ```yaml
 ---
