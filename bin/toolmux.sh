@@ -8,9 +8,6 @@ function help(){
 
 function toolmux(){
 
-  # exit if no parameter is given
-  test "$#" == '0' && echo "error, no parameter given, run $0 with an existing dir or a tmux session" && help && exit 1;
-
   # set  variable based on parameters
   PROJECT_NAME="$(basename "$1")"
 
@@ -39,8 +36,8 @@ function toolmux(){
   fi
 }
 
-# if executed without arguments or with curdir `.` run with pwd as argument
-if test "$#" == '0' || [[ "$1" == '.' ]]  ;then toolmux "$(pwd)" ;fi
+DIR="$1"
+test "$#" -eq 0  &&  DIR="$(pwd)"
+test "$1" == '.' && DIR="$(pwd)"
 
-# when launched with an argument test if it is a dir or an active tmux session and execute function
-if test "$#" == '1' && test -d $1 || tmux has-session -t $1 ;then toolmux "$1"; else help; fi
+if test -d $DIR || tmux has-session -t $DIR ;then toolmux "$DIR"; else help; fi
