@@ -32,7 +32,8 @@ Installation can be performed in an archlinux box as follows
 
 - ensure sudo is configured to run `pacman` without password
 
-> [!NOTE] this is required also for the updating
+> [!NOTE]
+> this is required also for the updating
 ```bash
 echo "$USER ALL=(ALL:ALL) NOPASSWD:/bin/pacman" | sudo tee "/etc/sudoers.d/$USER"
 ```
@@ -100,7 +101,8 @@ echo "$USER ALL=(ALL:ALL) NOPASSWD:/bin/pacman" | sudo tee "/etc/sudoers.d/$USER
 
 To uninstall run:
 
-> [!WARNING] this will leave packages installed as dependencies
+> [!WARNING]
+> this will leave packages installed as dependencies
 ```bash
 cd toolbox
 make clean
