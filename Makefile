@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := install
 .PHONY: $(addprefix dep-, $(DEPS)) deps links tpm plugins hooks install clean $(HOME)/.bashrc
 
-DEPS = parallel direnv rust mermaid-cli yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git tree-sitter-cli
+DEPS = parallel direnv rust mermaid-cli go-yq tealdeer ranger man wikiman sudo python unzip go curl tar lazygit starship openssh gcc npm neovim vim tmux fzf ripgrep ttf-jetbrains-mono-nerd stow gawk git tree-sitter-cli
 
 define link_file
 	mkdir -p "$@"
