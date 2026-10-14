@@ -32,11 +32,9 @@ RUN mkdir -p "/home/toolbox/.config/toolbox"
 RUN mkdir -p "/home/toolbox/.config/nvim"
 RUN mkdir -p "/home/toolbox/.config/vim"
 RUN mkdir -p "/home/toolbox/.local/bin"
-RUN mkdir -p "/home/toolbox/.local/lib"
 
 RUN stow --target="/home/toolbox/.config/" etc
 RUN stow --target="/home/toolbox/.local/bin" bin
-RUN stow --target="/home/toolbox/.local/lib" lib
 RUN git clone "https://github.com/tmux-plugins/tpm" "/home/toolbox/.config/tmux/plugins/tpm"
 RUN echo 'eval "$(starship init bash)"' >> "/home/toolbox/.bashrc"
 RUN echo 'source /home/toolbox/.config/toolbox/bash_integration.sh' >> "/home/toolbox/.bashrc"

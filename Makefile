@@ -15,8 +15,6 @@ endef
 $(HOME)/.local/bin: bin
 	$(link_file)
 
-$(HOME)/.local/lib: lib
-	$(link_file)
 
 $(HOME)/.config: etc
 	$(link_file)
@@ -34,7 +32,7 @@ deps: $(addprefix dep-, $(DEPS))
 dep-%:
 	pacman -Q $* > /dev/null 2>&1 || sudo pacman -S $* --noconfirm
 
-links: $(HOME)/.local/bin $(HOME)/.local/lib $(HOME)/.config
+links: $(HOME)/.local/bin $(HOME)/.config
 
 tpm: $(HOME)/.config/tmux/plugins/tpm
 
@@ -52,6 +50,5 @@ clean:
 	rm -rf "$(HOME)/.local/share/nvim"
 	test -d "$(HOME)/.config" && stow --target="$(HOME)/.config" -D etc
 	test -d "$(HOME)/.local/bin" stow --target="$(HOME)/.local/bin" -D bin
-	test -d "$(HOME)/.local/lib" stow --target="$(HOME)/.local/lib" -D lib
 	sed '/source \$HOME\/\.config\/toolbox\/bash_integration.*/d' -i "$(HOME)/.bashrc"
 
