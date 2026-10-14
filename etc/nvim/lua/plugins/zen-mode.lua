@@ -1,5 +1,6 @@
 return {
   "folke/zen-mode.nvim",
+  tag = "v1.4.1",
   opts = {
     window = {
       backdrop = 1,

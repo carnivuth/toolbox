@@ -1,5 +1,6 @@
 return {
   "williamboman/mason-lspconfig.nvim",
+  tag = "v2.3.0",
   opts={
     ensure_installed= {
       "vimls",

@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  tag = "v3.1.13",
   cmd = "Copilot",
   build = ":Copilot auth",
   event = "BufReadPost",
