@@ -17,6 +17,7 @@ require('nvim-treesitter').install(
     "markdown_inline",
     "go",
     "javascript",
+    "groovy",
     "html"
   }
 )
