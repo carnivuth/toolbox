@@ -37,12 +37,8 @@ endif
 set termguicolors
 
 " set colorscheme
-if exists("*plug#begin")
-  silent! colorscheme catppuccin_mocha
-else
-  silent! colorscheme slate
+silent! colorscheme slate
 
-endif
 
 " set relative line numbers
 set relativenumber
@@ -98,30 +94,6 @@ set laststatus=2
 " set fzf default options
 "let $FZF_DEFAULT_OPTS = '--cycle --bind "ctrl-j:down,ctrl-k:up,alt-j:preview-down,alt-k:preview-up,tab:toggle-up,btab:toggle-down"'
 
-if exists("*plug#begin")
-  " enable default ALE completition
-  let g:ale_completion_enabled = 1
-
-  " remove error highlight
-  let g:ale_set_highlights = 0
-
-  " set error messages format
-  let g:ale_virtualtext_cursor = 'disabled'
-  let g:ale_echo_msg_error_str = 'E'
-  let g:ale_echo_msg_warning_str = 'W'
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-  " enable ALE lint only on filesave
-  let g:ale_lint_on_save = 1
-  let g:ale_fix_on_save = 1
-  let g:ale_lint_on_text_changed = 'never'
-  let g:ale_lint_on_insert_leave = 0
-  let g:ale_fixers = {
-        \   '*': ['remove_trailing_lines', 'trim_whitespace']
-        \}
-endif
-
-
 " KEYMAPS
 " -------------------------------------------------------------------------------------------------------------------------------------
 " set space as the leader key
@@ -158,24 +130,6 @@ nnoremap <Leader>C :bw!<CR>
 nnoremap <Leader>c :bw<CR>
 nnoremap <Leader>j :bnext<CR>
 nnoremap <Leader>k :bprevious<CR>
-
-if exists("*plug#begin")
-" fzf binds
-nmap <Leader>ff :call fzf#run({'sink':'edit', 'options': '--preview="cat {}"'})<CR>
-nmap <Leader>fc :call fzf#run({'sink':'r ! cat', 'options': '--preview="cat {}"'})<CR>
-nmap <Leader>fg :call fzf#run({'source': 'git ls-files', 'sink':'edit', 'options': '--preview="cat {}"'})<CR>
-endif
-
-if exists("*plug#begin")
-  " ALE bindings
-  nnoremap <Leader>l :ALE
-  nnoremap <Leader>ld :ALEGoToDefinition<CR>
-  nnoremap <Leader>li :ALEGoToImplementation<CR>
-  nnoremap <Leader>ln :ALENext<CR>
-  nnoremap <Leader>lp :ALEPrevious<CR>
-  nnoremap <Leader>lf :ALEFix<CR>
-  nnoremap <Leader>lS :ALEStopAllLSPs<CR>
-endif
 
 " git bindings
 noremap <Leader>gg :!lazygit<CR>
@@ -221,11 +175,3 @@ noremap <leader>rc :set operatorfunc=RangerChangeOperator<cr>g@
 noremap <leader>rd :RangerCD<cr>
 noremap <leader>rld :RangerLCD<cr>
 
-" vim airline configuration
-
-if exists("*plug#begin")
-  function! AirlineInit()
-    let g:airline_section_c =''
-  endfunction
-  autocmd VimEnter * call AirlineInit()
-endif

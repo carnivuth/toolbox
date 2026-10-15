@@ -37,7 +37,6 @@ links: $(HOME)/.local/bin $(HOME)/.config
 tpm: $(HOME)/.config/tmux/plugins/tpm
 
 plugins:
-	vim +PlugInstall +qall
 	nvim "+Lazy install" "+qall"
 
 hooks: .git/hooks/post-merge

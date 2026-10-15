@@ -38,7 +38,6 @@ RUN stow --target="/home/toolbox/.local/bin" bin
 RUN git clone "https://github.com/tmux-plugins/tpm" "/home/toolbox/.config/tmux/plugins/tpm"
 RUN echo 'eval "$(starship init bash)"' >> "/home/toolbox/.bashrc"
 RUN echo 'source /home/toolbox/.config/toolbox/bash_integration.sh' >> "/home/toolbox/.bashrc"
-RUN vim +PlugInstall +qall
 RUN nvim "+Lazy install" "+qall"
 WORKDIR /home/toolbox
 ENTRYPOINT ["fixuid"]
